@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const CartDrawer = ({ isOpen, toggleCart, cartCount }) => {
   return (
@@ -24,7 +25,7 @@ const CartDrawer = ({ isOpen, toggleCart, cartCount }) => {
           >
             <div className="cart-header">
               <h2>Your Cart</h2>
-              <button onClick={toggleCart} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>&times;</button>
+              <button aria-label="Close cart" onClick={toggleCart} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>&times;</button>
             </div>
             
             <div className="cart-content">
@@ -32,7 +33,7 @@ const CartDrawer = ({ isOpen, toggleCart, cartCount }) => {
                 <p style={{ textAlign: 'center', marginTop: '20px' }}>Your cart is empty.</p>
               ) : (
                 <div style={{ display: 'flex', gap: '16px', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '16px' }}>
-                  <img src="https://images.unsplash.com/photo-1629739884942-8c704f7bdc71?w=100" alt="Mat" style={{ width: '80px', borderRadius: '8px' }} />
+                  <Image src="https://images.unsplash.com/photo-1629739884942-8c704f7bdc71?w=100" alt="Mat" width={80} height={80} style={{ borderRadius: '8px', objectFit: 'cover' }} />
                   <div>
                     <h4 style={{ margin: '0 0 8px' }}>Liquid Obsidian Desk Mat</h4>
                     <p style={{ fontWeight: 'bold', color: 'var(--color-primary)' }}>Rs. 1,999</p>

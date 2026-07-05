@@ -7,8 +7,14 @@ const michroma = Michroma({ weight: '400', subsets: ['latin'], variable: '--font
 const spaceMono = Space_Mono({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-space-mono' });
 
 export const metadata = {
-  title: 'Premium Desk Mats | Elevate Your Workspace',
-  description: 'Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence.',
+  title: 'Premium Desk Mats | Elevate Your Workspace | DMND+',
+  description: 'Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence. Free shipping across India.',
+  keywords: ['desk mats', 'premium desk pads', 'gaming mouse pad', 'workspace accessories', 'DMND+'],
+  openGraph: {
+    title: 'Premium Desk Mats | Elevate Your Workspace | DMND+',
+    description: 'Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence.',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {

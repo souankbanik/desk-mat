@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 
 const ProductGrid = ({ addToCart }) => {
   const products = [
@@ -45,7 +46,14 @@ const ProductGrid = ({ addToCart }) => {
         {products.map(product => (
           <div key={product.id} className="product-card">
             <div className="product-image-container">
-              <img src={product.image} alt={product.name} className="product-image" />
+              <Image 
+                src={product.image} 
+                alt={product.name} 
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: 'cover' }}
+                className="product-image"
+              />
             </div>
             <div className="product-info">
               <h3 className="product-title">{product.name}</h3>

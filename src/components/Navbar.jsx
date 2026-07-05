@@ -17,6 +17,7 @@ const Navbar = ({ cartCount, toggleCart }) => {
           <button 
             className="hamburger-btn" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
             ☰
           </button>
@@ -35,10 +36,10 @@ const Navbar = ({ cartCount, toggleCart }) => {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginRight: '-12px' }}>
-          <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button aria-label="Search" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Search size={18} />
           </button>
-          <button className="nav-cart" onClick={toggleCart} style={{ padding: '8px', display: 'flex', alignItems: 'center', position: 'relative', border: 'none', background: 'none' }}>
+          <button aria-label="Shopping Cart" className="nav-cart" onClick={toggleCart} style={{ padding: '8px', display: 'flex', alignItems: 'center', position: 'relative', border: 'none', background: 'none' }}>
             <ShoppingCart size={18} />
             {cartCount > 0 && (
               <span style={{ position: 'absolute', top: '0px', right: '0px', background: 'var(--color-primary)', color: 'white', fontSize: '0.7rem', fontWeight: 'bold', width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
