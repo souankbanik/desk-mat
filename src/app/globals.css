@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
   
   .hero-section {
     padding-top: 0;
-    min-height: calc(100dvh - 75px);
+    min-height: calc(100dvh - 180px); /* Leave room for Navbar and Marquee */
     justify-content: center;
   }
   
