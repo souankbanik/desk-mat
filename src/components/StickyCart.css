@@ -1,0 +1,93 @@
+.sticky-cart-wrapper {
+  position: fixed;
+  bottom: 32px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 90;
+  padding: 0 24px;
+}
+
+.sticky-cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 32px;
+  width: 100%;
+  max-width: 800px;
+  background: rgba(17, 17, 17, 0.85);
+  box-shadow: var(--shadow-premium), 0 20px 40px rgba(0,0,0,0.8);
+}
+
+.sticky-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.sticky-product {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.sticky-price {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.sticky-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 215, 0, 0.1);
+  color: #FFD700;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.sticky-btn {
+  padding: 12px 32px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .sticky-cart-wrapper {
+    bottom: 16px;
+  }
+  
+  .sticky-cart {
+    padding: 12px 16px;
+    gap: 16px;
+  }
+  
+  .sticky-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .sticky-badge {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sticky-badge {
+    display: none; /* Hide badge on very small screens to fit */
+  }
+  .sticky-title {
+    font-size: 1rem;
+  }
+}

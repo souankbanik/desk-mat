@@ -1,0 +1,64 @@
+.lifestyle-section {
+  padding: 120px 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.lifestyle-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.lifestyle-title {
+  font-size: 4rem;
+  color: var(--text-primary);
+}
+
+.lifestyle-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lifestyle-copy p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.lifestyle-copy p:nth-child(1),
+.lifestyle-copy p:nth-child(3) {
+  font-weight: 600;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+}
+
+.lifestyle-footer {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .lifestyle-title {
+    font-size: 2.5rem;
+  }
+  .lifestyle-copy p {
+    font-size: 1.1rem;
+  }
+  .lifestyle-copy p:nth-child(1),
+  .lifestyle-copy p:nth-child(3) {
+    font-size: 1.25rem;
+  }
+  .lifestyle-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
