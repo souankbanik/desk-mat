@@ -154,6 +154,24 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color var(--transition-smooth);
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
 .nav-cart {
   background: transparent;
   border: 1px solid var(--border-highlight);
