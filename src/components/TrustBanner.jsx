@@ -4,9 +4,9 @@ import React from 'react';
 
 const TrustBanner = () => {
   const features = [
-    { icon: '🚚', title: 'Free Shipping', desc: 'Across India on all prepaid orders' },
+    { icon: '🚚', title: 'Free Shipping', desc: 'Dispatched across India within 24 hours.' },
     { icon: '🔒', title: 'Secure Checkout', desc: '256-bit SSL encrypted payments' },
-    { icon: '↩️', title: '30-Day Returns', desc: 'Hassle-free return policy' }
+    { icon: '✨', title: 'Premium 4mm Cushion', desc: 'Heavy anti-slip rubber base.' }
   ];
 
   // Duplicate the array to create a seamless infinite loop

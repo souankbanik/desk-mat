@@ -13,7 +13,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Premium Desk Setup Essentials <br/> Built to Inspire
+          ELEVATE YOUR WORKSPACE
         </motion.h1>
         
         <motion.p 
@@ -22,7 +22,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Premium desk mats, desk pads &amp; workspace essentials built to inspire your setup. Stitched edges, anti-slip base, vibrant prints. Free shipping across India.
+          Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence.
         </motion.p>
 
         <motion.div 
