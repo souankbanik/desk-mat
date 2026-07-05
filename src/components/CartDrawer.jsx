@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const CartDrawer = ({ isOpen, toggleCart, cartCount, addToCart }) => {
+const CartDrawer = ({ isOpen, toggleCart, cartCount }) => {
   return (
     <AnimatePresence>
       {isOpen && (

@@ -22,7 +22,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Premium desk mats, desk pads & workspace essentials built to inspire your setup. Stitched edges, anti-slip base, vibrant prints. Free shipping across India.
+          Premium desk mats, desk pads &amp; workspace essentials built to inspire your setup. Stitched edges, anti-slip base, vibrant prints. Free shipping across India.
         </motion.p>
 
         <motion.div 
