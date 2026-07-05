@@ -1,6 +1,7 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import './ProductGrid.css';
 
 const PRODUCTS = [
   { id: 1, name: "Midnight Series", image: "/images/mat_midnight.png" },

@@ -1,7 +1,8 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Crosshair, Sparkles, Truck } from 'lucide-react';
-import './TrustBar.css';
 
 const features = [
   { icon: ShieldCheck, text: "Fade Resistant" },

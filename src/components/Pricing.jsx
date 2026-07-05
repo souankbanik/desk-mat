@@ -1,7 +1,8 @@
+"use client";
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import './Pricing.css';
 
 const Pricing = ({ selectedDesign, setSelectedDesign, addToCart }) => {
   const [selectedPackage, setSelectedPackage] = useState('bundle');

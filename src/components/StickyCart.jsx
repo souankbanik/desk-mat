@@ -1,7 +1,8 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Star } from 'lucide-react';
-import './StickyCart.css';
 
 const StickyCart = ({ addToCart }) => {
   const [isVisible, setIsVisible] = useState(false);

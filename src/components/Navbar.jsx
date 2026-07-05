@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
-import './Navbar.css';
 
 const Navbar = ({ cartCount, toggleCart }) => {
   const [scrolled, setScrolled] = useState(false);

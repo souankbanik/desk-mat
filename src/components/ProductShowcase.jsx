@@ -1,6 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './ProductShowcase.css';
 
 const IMAGES = [
   { id: 1, src: '/images/mat_topography.png', alt: 'Top view' },

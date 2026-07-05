@@ -1,7 +1,8 @@
+"use client";
+
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingCart } from 'lucide-react';
-import './CartDrawer.css';
 
 const ALTERNATIVE_DESIGNS = [
   { id: 2, name: "Topography", image: "/images/mat_topography.png" },
