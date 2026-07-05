@@ -145,6 +145,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .nav-logo {
@@ -323,6 +324,12 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .hamburger-btn {
     display: block;
+  }
+  
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .nav-links {
