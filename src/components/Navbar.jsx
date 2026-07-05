@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
+import { Search, ShoppingCart } from 'lucide-react';
+
 const Navbar = ({ cartCount, toggleCart }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -28,9 +30,19 @@ const Navbar = ({ cartCount, toggleCart }) => {
           <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
         </div>
 
-        <button className="nav-cart" onClick={toggleCart}>
-          Cart ({cartCount || 0})
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Search size={22} />
+          </button>
+          <button className="nav-cart" onClick={toggleCart} style={{ padding: '8px', display: 'flex', alignItems: 'center', position: 'relative', border: 'none', background: 'none' }}>
+            <ShoppingCart size={22} />
+            {cartCount > 0 && (
+              <span style={{ position: 'absolute', top: '0px', right: '0px', background: 'var(--color-primary)', color: 'white', fontSize: '0.7rem', fontWeight: 'bold', width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
+                {cartCount}
+              </span>
+            )}
+          </button>
+        </div>
       </nav>
     </div>
   );
