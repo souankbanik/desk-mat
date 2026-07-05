@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="hero-section container">
-      <div className="hero-content">
+    <section className="hero-section">
+      <div className="hero-content container">
         <motion.h1 
-          className="hero-title text-gold-gradient"
+          className="hero-title"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          ELEVATE YOUR<br/>WORKSPACE
+          Premium Desk Setup Essentials <br/> Built to Inspire
         </motion.h1>
         
         <motion.p 
@@ -22,9 +22,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Premium, high-performance desk mats<br/>
-          designed for gamers, creators, and<br/>
-          professionals who demand visual excellence.
+          Premium desk mats, desk pads & workspace essentials built to inspire your setup. Stitched edges, anti-slip base, vibrant prints. Free shipping across India.
         </motion.p>
 
         <motion.div 
@@ -34,7 +32,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <a href="#collection" className="btn-primary">
-            SHOP COLLECTION
+            Shop Collection
           </a>
         </motion.div>
       </div>

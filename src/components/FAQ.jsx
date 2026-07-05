@@ -2,66 +2,35 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-
-const faqs = [
-  {
-    q: "Is it washable?",
-    a: "Yes. Hand wash gently using mild soap and cold water."
-  },
-  {
-    q: "Will the print fade?",
-    a: "No. We use premium sublimation printing for vibrant, long-lasting colors."
-  },
-  {
-    q: "Does it move while gaming?",
-    a: "No. The natural rubber anti-slip base keeps it firmly in place."
-  },
-  {
-    q: "What size is it?",
-    a: "800×300mm with a comfortable 4mm thickness."
-  }
-];
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const faqs = [
+    { q: "Do you offer free shipping in India?", a: "Yes, we offer free shipping across India on all prepaid orders." },
+    { q: "How do I clean my desk mat?", a: "Simply use a damp cloth with mild soap and gently wipe the surface. Let it air dry." },
+    { q: "What is the return policy?", a: "We have a 7-day return policy for any manufacturing defects." }
+  ];
 
-  const toggle = (idx) => {
-    if (openIndex === idx) setOpenIndex(null);
-    else setOpenIndex(idx);
-  };
+  const [open, setOpen] = useState(null);
 
   return (
-    <section id="faq" className="faq-section container">
-      <h2 className="faq-title text-center text-metallic">Frequently Asked Questions</h2>
-      
+    <section className="faq-section container">
+      <h2 className="grid-title text-center" style={{ textAlign: 'center', marginBottom: '40px' }}>Frequently Asked Questions</h2>
       <div className="faq-accordion">
         {faqs.map((faq, idx) => (
           <div key={idx} className="faq-item">
-            <button 
-              className="faq-question" 
-              onClick={() => toggle(idx)}
-            >
-              <span>{faq.q}</span>
-              <motion.div
-                animate={{ rotate: openIndex === idx ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ChevronDown size={20} className="text-secondary" />
-              </motion.div>
+            <button className="faq-question" onClick={() => setOpen(open === idx ? null : idx)}>
+              {faq.q}
+              <span>{open === idx ? '-' : '+'}</span>
             </button>
             <AnimatePresence>
-              {openIndex === idx && (
-                <motion.div
+              {open === idx && (
+                <motion.div 
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="faq-answer-wrapper"
+                  style={{ overflow: 'hidden' }}
                 >
-                  <div className="faq-answer text-secondary">
-                    {faq.a}
-                  </div>
+                  <p style={{ padding: '16px 0', color: 'var(--text-secondary)' }}>{faq.a}</p>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -1,51 +1,65 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
-
-const PRODUCTS = [
-  { id: 1, name: "Midnight Series", image: "/images/mat_midnight.png" },
-  { id: 2, name: "Topography Series", image: "/images/mat_topography.png" },
-  { id: 3, name: "Texture Edition", image: "/images/mat_texture.png" },
-  { id: 4, name: "Stitch Precision", image: "/images/mat_close_up_stitching.png" }
-];
 
 const ProductGrid = ({ addToCart }) => {
+  const products = [
+    {
+      id: 1,
+      name: "Liquid Obsidian Desk Mat",
+      price: 1999,
+      originalPrice: 2499,
+      image: "https://images.unsplash.com/photo-1629739884942-8c704f7bdc71?w=800&q=80"
+    },
+    {
+      id: 2,
+      name: "Topographic Noir Desk Mat",
+      price: 1999,
+      originalPrice: 2499,
+      image: "https://images.unsplash.com/photo-1588693959306-613d2f9b8c94?w=800&q=80"
+    },
+    {
+      id: 3,
+      name: "Minimalist Ivory Desk Mat",
+      price: 1999,
+      originalPrice: 2499,
+      image: "https://images.unsplash.com/photo-1616423640778-28d1b53229bd?w=800&q=80"
+    },
+    {
+      id: 4,
+      name: "Cyber Grid Extended Pad",
+      price: 1999,
+      originalPrice: 2499,
+      image: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=800&q=80"
+    }
+  ];
+
   return (
     <section id="collection" className="product-grid-section container">
-      <div className="grid-container">
-        {PRODUCTS.map((product, idx) => (
-          <motion.div 
-            key={product.id}
-            className="product-item"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: idx * 0.1, duration: 0.5 }}
-          >
-            <div className="product-image-wrapper">
+      <div className="grid-header">
+        <h2 className="grid-title">Featured Collection</h2>
+        <p className="text-secondary">Explore our premium designs</p>
+      </div>
+      
+      <div className="products-container">
+        {products.map(product => (
+          <div key={product.id} className="product-card">
+            <div className="product-image-container">
               <img src={product.image} alt={product.name} className="product-image" />
             </div>
-            
             <div className="product-info">
-              <h3 className="product-name">{product.name}</h3>
-              <div className="product-price">₹1,299</div>
-              
-              <ul className="product-specs text-secondary">
-                <li>• 4mm thickness</li>
-                <li>• Anti-Fray Stitched Edges</li>
-                <li>• Anti-Slip Base</li>
-                <li>• High-Fidelity Print</li>
-              </ul>
-              
-              <button 
-                className="btn-primary product-add-btn"
-                onClick={() => addToCart(1)}
-              >
-                Add to Cart
-              </button>
+              <h3 className="product-title">{product.name}</h3>
+              <div className="product-price-row">
+                <span className="price-current">Rs. {product.price.toLocaleString()}</span>
+                <button 
+                  className="btn-add-cart"
+                  onClick={() => addToCart(1)}
+                >
+                  Add to cart
+                </button>
+              </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

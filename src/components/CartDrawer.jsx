@@ -1,31 +1,9 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Plus, Minus, ShoppingCart } from 'lucide-react';
-
-const ALTERNATIVE_DESIGNS = [
-  { id: 2, name: "Topography", image: "/images/mat_topography.png" },
-  { id: 3, name: "Texture", image: "/images/mat_texture.png" },
-  { id: 4, name: "Stitch", image: "/images/mat_close_up_stitching.png" }
-];
 
 const CartDrawer = ({ isOpen, toggleCart, cartCount, addToCart }) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isOpen]);
-
-  const cartTotal = cartCount === 1 ? 1299 : (cartCount >= 2 ? (cartCount * 1000) : 0);
-  const showUpsell = cartCount === 1;
-
-  const handleInstantUpsell = () => {
-    addToCart(1);
-  };
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -45,72 +23,33 @@ const CartDrawer = ({ isOpen, toggleCart, cartCount, addToCart }) => {
             transition={{ type: 'tween', duration: 0.3 }}
           >
             <div className="cart-header">
-              <h2>Your Cart ({cartCount})</h2>
-              <button className="close-btn" onClick={toggleCart}>
-                <X size={24} />
-              </button>
+              <h2>Your Cart</h2>
+              <button onClick={toggleCart} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>&times;</button>
             </div>
-
+            
             <div className="cart-content">
               {cartCount === 0 ? (
-                <div className="empty-cart text-secondary">
-                  Your cart is empty.
-                </div>
+                <p style={{ textAlign: 'center', marginTop: '20px' }}>Your cart is empty.</p>
               ) : (
-                <>
-                  {showUpsell && (
-                    <div className="upsell-container">
-                      <div className="upsell-banner">
-                        Add a 2nd Mat for just ₹701 more! Unlock the 2-Mat Bundle for ₹2,000.
-                      </div>
-                      
-                      <div className="upsell-grid">
-                        {ALTERNATIVE_DESIGNS.map((design) => (
-                          <div key={design.id} className="upsell-item">
-                            <img src={design.image} alt={design.name} className="upsell-img" />
-                            <div className="upsell-info">
-                              <span className="upsell-name">{design.name}</span>
-                              <button 
-                                className="upsell-add-btn text-gold-gradient"
-                                onClick={handleInstantUpsell}
-                              >
-                                + ADD
-                              </button>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="cart-items">
-                    <div className="cart-item">
-                      <img src="/images/mat_midnight.png" alt="Desk Mat" className="cart-item-img" />
-                      <div className="cart-item-details">
-                        <h4>Premium Desk Mat</h4>
-                        <div className="cart-item-price text-gold-gradient">
-                          {cartCount >= 2 ? '₹1,000 (Bundle Rate)' : '₹1,299'}
-                        </div>
-                        <div className="quantity-selector">
-                          <button><Minus size={14} /></button>
-                          <span>{cartCount}</span>
-                          <button onClick={() => addToCart(1)}><Plus size={14} /></button>
-                        </div>
-                      </div>
-                    </div>
+                <div style={{ display: 'flex', gap: '16px', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '16px' }}>
+                  <img src="https://images.unsplash.com/photo-1629739884942-8c704f7bdc71?w=100" alt="Mat" style={{ width: '80px', borderRadius: '8px' }} />
+                  <div>
+                    <h4 style={{ margin: '0 0 8px' }}>Liquid Obsidian Desk Mat</h4>
+                    <p style={{ fontWeight: 'bold', color: 'var(--color-primary)' }}>Rs. 1,999</p>
+                    <p>Qty: {cartCount}</p>
                   </div>
-                </>
+                </div>
               )}
             </div>
 
             {cartCount > 0 && (
               <div className="cart-footer">
-                <div className="cart-subtotal">
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '1.2rem', fontWeight: 'bold' }}>
                   <span>Subtotal</span>
-                  <span>₹{cartTotal.toLocaleString('en-IN')}</span>
+                  <span>Rs. {(cartCount * 1999).toLocaleString()}</span>
                 </div>
-                <button className="btn-primary checkout-btn">
-                  Checkout
+                <button className="btn-primary checkout-btn" style={{ width: '100%' }}>
+                  Proceed to Checkout
                 </button>
               </div>
             )}

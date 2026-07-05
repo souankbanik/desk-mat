@@ -5,14 +5,8 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import ProductGrid from '../components/ProductGrid';
 import CartDrawer from '../components/CartDrawer';
-import SocialProof from '../components/SocialProof';
-import TrustBar from '../components/TrustBar';
-import ProductDetails from '../components/ProductDetails';
-import Lifestyle from '../components/Lifestyle';
-import Reviews from '../components/Reviews';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
-import StickyCart from '../components/StickyCart';
 
 export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -32,16 +26,10 @@ export default function Home() {
       <main>
         <Hero />
         <ProductGrid addToCart={addToCart} />
-        <SocialProof />
-        <TrustBar />
-        <ProductDetails />
-        <Lifestyle />
-        <Reviews />
         <FAQ />
       </main>
 
       <Footer />
-      <StickyCart addToCart={addToCart} />
       
       <CartDrawer 
         isOpen={isCartOpen} 
