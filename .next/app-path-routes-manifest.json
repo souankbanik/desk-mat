@@ -1,5 +1,7 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
-  "/page": "/"
+  "/contact/page": "/contact",
+  "/page": "/",
+  "/track-order/page": "/track-order"
 }

@@ -2,23 +2,25 @@
 
 import React from 'react';
 
+import Link from 'next/link';
+
 const Navbar = ({ cartCount, toggleCart }) => {
   return (
     <div className="navbar-wrapper">
       <nav className="navbar container">
-        <a href="/" className="nav-logo">
+        <Link href="/" className="nav-logo">
           Mopadz
-        </a>
+        </Link>
         
         <div className="nav-links">
-          <a href="/" className="nav-link">Home</a>
-          <a href="#collection" className="nav-link">Shop</a>
-          <a href="#" className="nav-link">Track Order</a>
-          <a href="#" className="nav-link">Contact Us</a>
+          <Link href="/" className="nav-link">Home</Link>
+          <Link href="/#collection" className="nav-link">Shop</Link>
+          <Link href="/track-order" className="nav-link">Track Order</Link>
+          <Link href="/contact" className="nav-link">Contact Us</Link>
         </div>
 
         <button className="nav-cart" onClick={toggleCart}>
-          Cart ({cartCount})
+          Cart ({cartCount || 0})
         </button>
       </nav>
     </div>
