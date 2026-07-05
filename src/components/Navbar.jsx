@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { Search, ShoppingCart } from 'lucide-react';
 
@@ -19,8 +20,8 @@ const Navbar = ({ cartCount, toggleCart }) => {
             ☰
           </button>
           <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ width: '180px', height: '48px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/logo.svg" alt="DMND+" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div style={{ position: 'relative', width: '210px', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Image src="/logo.png" alt="DMND+" fill style={{ objectFit: 'contain' }} priority />
             </div>
           </Link>
         </div>
