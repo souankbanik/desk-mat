@@ -21,7 +21,7 @@ const Navbar = ({ cartCount, toggleCart }) => {
           </button>
           <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center' }}>
             <div style={{ position: 'relative', width: '210px', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Image src="/logo.png" alt="DMND+" fill style={{ objectFit: 'contain' }} priority />
+              <Image src="/logo.png" alt="DMND+" fill style={{ objectFit: 'contain', transform: 'scale(1.6)' }} priority />
             </div>
           </Link>
         </div>
