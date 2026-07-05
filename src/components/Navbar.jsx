@@ -1,22 +1,31 @@
 "use client";
 
-import React from 'react';
-
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 const Navbar = ({ cartCount, toggleCart }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="navbar-wrapper">
       <nav className="navbar container">
-        <Link href="/" className="nav-logo">
-          DMND+
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <button 
+            className="hamburger-btn" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            ☰
+          </button>
+          <Link href="/" className="nav-logo">
+            DMND+
+          </Link>
+        </div>
         
-        <div className="nav-links">
-          <Link href="/" className="nav-link">Home</Link>
-          <Link href="/#collection" className="nav-link">Shop</Link>
-          <Link href="/track-order" className="nav-link">Track Order</Link>
-          <Link href="/contact" className="nav-link">Contact Us</Link>
+        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+          <Link href="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+          <Link href="/#collection" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Shop</Link>
+          <Link href="/track-order" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Track Order</Link>
+          <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
         </div>
 
         <button className="nav-cart" onClick={toggleCart}>
