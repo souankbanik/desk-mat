@@ -1,12 +1,14 @@
 "use client";
 
 import React from 'react';
+import { Truck, ShieldCheck, Sparkles, HandCoins } from 'lucide-react';
 
 const TrustBanner = () => {
   const features = [
-    { icon: '🚚', title: 'Free Shipping', desc: 'Dispatched across India within 24 hours.' },
-    { icon: '🔒', title: 'Secure Checkout', desc: '256-bit SSL encrypted payments' },
-    { icon: '✨', title: 'Premium 4mm Cushion', desc: 'Heavy anti-slip rubber base.' }
+    { icon: <Truck size={32} />, title: 'Free Shipping', desc: 'Dispatched across India within 24 hours.' },
+    { icon: <ShieldCheck size={32} />, title: 'Secure Checkout', desc: '256-bit SSL encrypted payments' },
+    { icon: <HandCoins size={32} />, title: 'Cash on Delivery', desc: 'Available across India. Pay at your doorstep.' },
+    { icon: <Sparkles size={32} />, title: 'Premium 4mm Cushion', desc: 'Heavy anti-slip rubber base.' }
   ];
 
   // Duplicate the array to create a seamless infinite loop

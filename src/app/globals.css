@@ -75,8 +75,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
   background-color: #000000;
 }
 
@@ -94,30 +94,37 @@ h1, h2, h3, h4, h5, h6 {
   background: #999999;
 }
 
-/* --- Hero Section (Mopadz Style) --- */
+/* --- Hero Section (Premium Editorial Style) --- */
 .hero-section {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  min-height: 80vh;
-  padding-top: 80px;
-  background-color: var(--bg-secondary);
+  min-height: 85vh;
+  padding: 80px 0;
+  background-color: #F7F7F5;
+  overflow: hidden;
+  position: relative;
 }
 
 .hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 64px;
+}
+
+.hero-text-block {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 24px;
-  max-width: 800px;
+  z-index: 2;
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-size: clamp(3.5rem, 6vw, 5.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -126,7 +133,30 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.125rem;
   line-height: 1.6;
   color: var(--text-secondary);
-  max-width: 600px;
+  max-width: 480px;
+}
+
+.hero-image-block {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Faint radial gradient behind the desk image for depth */
+.hero-image-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 130%;
+  background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, rgba(247,247,245,0) 60%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* --- Navbar --- */
@@ -135,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 0;
+  padding: 15px 0;
   z-index: 100;
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-subtle);
