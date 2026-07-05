@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = ({ cartCount, toggleCart }) => {
@@ -15,19 +14,11 @@ const Navbar = ({ cartCount, toggleCart }) => {
 
   return (
     <nav className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
-      <div className="navbar glass-panel container">
-        <div className="nav-logo text-metallic">MAT.</div>
+      <div className="navbar container">
+        <div className="nav-logo">DMND+</div>
         
-        <div className="nav-links">
-          <a href="#designs">Designs</a>
-          <a href="#bundle">Bundle</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#faq">FAQ</a>
-        </div>
-
         <button className="nav-cart" onClick={toggleCart}>
-          <ShoppingBag size={20} />
-          <span>Cart ({cartCount})</span>
+          Cart ({cartCount})
         </button>
       </div>
     </nav>

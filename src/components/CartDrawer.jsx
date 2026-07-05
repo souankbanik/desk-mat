@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Plus, Minus } from 'lucide-react';
+import { X, Plus, Minus, ShoppingCart } from 'lucide-react';
 import './CartDrawer.css';
 
+const ALTERNATIVE_DESIGNS = [
+  { id: 2, name: "Topography", image: "/images/mat_topography.png" },
+  { id: 3, name: "Texture", image: "/images/mat_texture.png" },
+  { id: 4, name: "Stitch", image: "/images/mat_close_up_stitching.png" }
+];
+
 const CartDrawer = ({ isOpen, toggleCart, cartCount, addToCart }) => {
-  // Prevent scrolling when cart is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -15,6 +20,10 @@ const CartDrawer = ({ isOpen, toggleCart, cartCount, addToCart }) => {
 
   const cartTotal = cartCount === 1 ? 1299 : (cartCount >= 2 ? (cartCount * 1000) : 0);
   const showUpsell = cartCount === 1;
+
+  const handleInstantUpsell = () => {
+    addToCart(1);
+  };
 
   return (
     <AnimatePresence>
@@ -28,11 +37,11 @@ const CartDrawer = ({ isOpen, toggleCart, cartCount, addToCart }) => {
             onClick={toggleCart}
           />
           <motion.div 
-            className="cart-drawer glass-panel"
+            className="cart-drawer"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            transition={{ type: 'tween', duration: 0.3 }}
           >
             <div className="cart-header">
               <h2>Your Cart ({cartCount})</h2>
@@ -49,29 +58,37 @@ const CartDrawer = ({ isOpen, toggleCart, cartCount, addToCart }) => {
               ) : (
                 <>
                   {showUpsell && (
-                    <div className="upsell-banner premium-card">
-                      <div className="upsell-badge">Unlock Our Best Value</div>
-                      <p className="upsell-text">
-                        You're <strong>₹701</strong> away from our best deal.<br/>
-                        Add one more desk mat.<br/>
-                        <span className="upsell-highlight">Save ₹598 instantly.</span>
-                      </p>
-                      <button 
-                        className="btn-primary upsell-btn"
-                        onClick={() => addToCart(1)}
-                      >
-                        Add Second Mat
-                      </button>
+                    <div className="upsell-container">
+                      <div className="upsell-banner">
+                        Add a 2nd Mat for just ₹701 more! Unlock the 2-Mat Bundle for ₹2,000.
+                      </div>
+                      
+                      <div className="upsell-grid">
+                        {ALTERNATIVE_DESIGNS.map((design) => (
+                          <div key={design.id} className="upsell-item">
+                            <img src={design.image} alt={design.name} className="upsell-img" />
+                            <div className="upsell-info">
+                              <span className="upsell-name">{design.name}</span>
+                              <button 
+                                className="upsell-add-btn text-gold-gradient"
+                                onClick={handleInstantUpsell}
+                              >
+                                + ADD
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
 
                   <div className="cart-items">
                     <div className="cart-item">
-                      <img src="/images/mat_topography.png" alt="Desk Mat" className="cart-item-img" />
+                      <img src="/images/mat_midnight.png" alt="Desk Mat" className="cart-item-img" />
                       <div className="cart-item-details">
                         <h4>Premium Desk Mat</h4>
-                        <div className="cart-item-price">
-                          {cartCount >= 2 ? '₹1,000' : '₹1,299'}
+                        <div className="cart-item-price text-gold-gradient">
+                          {cartCount >= 2 ? '₹1,000 (Bundle Rate)' : '₹1,299'}
                         </div>
                         <div className="quantity-selector">
                           <button><Minus size={14} /></button>

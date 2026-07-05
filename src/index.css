@@ -1,21 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Michroma&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-  --bg-primary: #090909;
-  --bg-secondary: #111111;
-  --bg-card: #171717;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.15);
+  --bg-primary: #131110;
+  --bg-secondary: #1A1816;
+  --bg-card: transparent;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-highlight: rgba(255, 255, 255, 0.2);
   
   --text-primary: #FFFFFF;
-  --text-secondary: #B6B6B6;
+  --text-secondary: #B0A8A0;
   --text-dark: #000000;
   
-  --accent-metallic: linear-gradient(90deg, #F5F5F5, #BDBDBD, #FFFFFF);
+  --accent-gold: linear-gradient(180deg, #FDECB7 0%, #D4AF37 40%, #7D5B12 100%);
   
   --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.1);
-  --shadow-gold: 0 0 30px rgba(255, 215, 0, 0.15);
+  --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.15);
   
   --transition-smooth: 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -37,15 +36,12 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-family: 'Michroma', sans-serif;
+  line-height: 1.2;
 }
 
-/* Typography Utilities */
-.text-metallic {
-  background: var(--accent-metallic);
+.text-gold-gradient {
+  background: var(--accent-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -56,80 +52,44 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-secondary);
 }
 
-/* Layout Utilities */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* UI Elements */
 .glass-panel {
-  background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(19, 17, 16, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-}
-
-.premium-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  transition: all var(--transition-smooth);
-}
-
-.premium-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-premium), var(--shadow-glow);
-  border-color: var(--border-highlight);
+  border-radius: 8px;
 }
 
 .btn-primary {
   background: #FFFFFF;
   color: var(--text-dark);
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: 'Michroma', sans-serif;
+  font-weight: 700;
   padding: 16px 32px;
-  border-radius: 8px;
+  border-radius: 2px;
   border: none;
   cursor: pointer;
   transition: all var(--transition-smooth);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  transform: translateY(-2px);
+  background: #EAEAEA;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
 }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  padding: 16px 32px;
-  border-radius: 8px;
-  border: 1px solid var(--border-subtle);
-  cursor: pointer;
-  transition: all var(--transition-smooth);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 1rem;
-}
-
-.btn-secondary:hover {
-  background: var(--border-subtle);
-  border-color: var(--border-highlight);
-}
-
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -137,9 +97,9 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-card);
+  background: #333;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border-highlight);
+  background: #555;
 }
