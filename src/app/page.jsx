@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import TrustBanner from '../components/TrustBanner';
 import ProductGrid from '../components/ProductGrid';
+import Reviews from '../components/Reviews';
 import CartDrawer from '../components/CartDrawer';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
@@ -25,7 +27,9 @@ export default function Home() {
       
       <main>
         <Hero />
+        <TrustBanner />
         <ProductGrid addToCart={addToCart} />
+        <Reviews />
         <FAQ />
       </main>
 

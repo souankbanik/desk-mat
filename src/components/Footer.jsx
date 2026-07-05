@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer-section">
       <div className="footer-content container">
         <div className="footer-brand">
-          <h2 className="nav-logo">Mopadz</h2>
+          <h2 className="nav-logo">DMND+</h2>
           <p className="text-secondary" style={{ marginTop: '16px' }}>Built to Inspire. Premium desk essentials for the modern workspace.</p>
         </div>
         <div className="footer-links" style={{ display: 'flex', gap: '32px', marginTop: '24px' }}>

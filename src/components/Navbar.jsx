@@ -9,7 +9,7 @@ const Navbar = ({ cartCount, toggleCart }) => {
     <div className="navbar-wrapper">
       <nav className="navbar container">
         <Link href="/" className="nav-logo">
-          Mopadz
+          DMND+
         </Link>
         
         <div className="nav-links">
