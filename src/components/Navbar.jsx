@@ -18,8 +18,8 @@ const Navbar = ({ cartCount, toggleCart }) => {
           >
             ☰
           </button>
-          <Link href="/" className="nav-logo">
-            DMND+
+          <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/logo.svg" alt="DMND+" style={{ height: '32px', width: 'auto' }} />
           </Link>
         </div>
         
