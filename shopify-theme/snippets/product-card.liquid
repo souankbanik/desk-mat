@@ -1,51 +1,38 @@
 {% comment %}
   Accepts:
   - product: {Object} Product Liquid object
-  - collection_name: {String} (Optional)
+  - collection_name: {String} (Optional) Name of the collection this belongs to
 {% endcomment %}
 
 <div class="product-card">
-  <a href="{{ product.url }}" class="product-image-container">
-    {% if product.featured_image %}
-      <img 
-        src="{{ product.featured_image | image_url: width: 800 }}"
-        alt="{{ product.featured_image.alt | escape }}"
-        class="product-image"
-        loading="lazy"
-        width="{{ product.featured_image.width }}"
-        height="{{ product.featured_image.height }}"
-      >
-    {% else %}
-      {{ 'product-1' | placeholder_svg_tag: 'product-image' }}
-    {% endif %}
-  </a>
+  <div class="product-image-container">
+    <a href="{{ product.url }}" class="product-image-link">
+      <img src="{{ product.featured_image | img_url: '400x400', crop: 'center' }}" alt="{{ product.title }}" class="product-image" loading="lazy" />
+    </a>
+    <div class="product-actions">
+      <button class="action-btn btn-wishlist" aria-label="Add to wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+      </button>
+      <form method="post" action="/cart/add" class="add-to-cart-form" style="margin: 0;">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        <button type="submit" class="action-btn btn-cart" aria-label="Add to cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+  
   <div class="product-info">
-    <div class="product-title-row">
-      <a href="{{ product.url }}" style="text-decoration: none;">
-        <h3 class="product-title">{{ product.title }}</h3>
-      </a>
+    <a href="{{ product.url }}" style="text-decoration: none;">
+      <h3 class="product-title">{{ product.title }}</h3>
+    </a>
+    <div class="product-rating-minimal">
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
     </div>
-    
-    <div class="product-meta-row">
-      <span class="product-collection">
-        {% if collection_name %}
-          {{ collection_name }}
-        {% elsif product.collections.size > 0 %}
-          {{ product.collections.first.title }}
-        {% else %}
-          Desk Mats
-        {% endif %}
-      </span>
-      
-      <!-- Liquid doesn't have native ratings unless you use metafields (e.g., product.metafields.reviews.rating.value) -->
-      <!-- Hardcoded placeholder to match our dummy data aesthetic until an app is installed -->
-      <div class="product-rating-minimal">
-        <span class="star">★</span>
-        <span class="rating-val">4.8</span>
-        <span class="review-count">(12)</span>
-      </div>
-    </div>
-    
-    <span class="price-current">{{ product.price | money }}</span>
+    <span class="price-current">Rs. {{ product.price | divided_by: 100 }}.00</span>
   </div>
 </div>

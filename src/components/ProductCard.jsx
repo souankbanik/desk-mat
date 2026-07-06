@@ -1,36 +1,41 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Heart, ShoppingBag } from 'lucide-react';
 
-
-const ProductCard = ({ product, collectionName }) => {
+const ProductCard = ({ product, collectionName, addToCart }) => {
   return (
     <div className="product-card">
-      <Link href={`/products/${product.id}`} className="product-image-container">
-        <Image 
-          src={product.image} 
-          alt={product.name} 
-          fill
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-          style={{ objectFit: 'cover' }}
-          className="product-image"
-        />
-      </Link>
+      <div className="product-image-container">
+        <Link href={`/products/${product.id}`} className="product-image-link">
+          <Image 
+            src={product.image} 
+            alt={product.name} 
+            fill
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            style={{ objectFit: 'cover' }}
+            className="product-image"
+          />
+        </Link>
+        <div className="product-actions">
+          <button className="action-btn btn-wishlist" aria-label="Add to wishlist">
+            <Heart size={16} />
+          </button>
+          <button className="action-btn btn-cart" aria-label="Add to cart" onClick={(e) => { e.preventDefault(); if (addToCart) addToCart(1); }}>
+            <ShoppingBag size={16} />
+          </button>
+        </div>
+      </div>
       <div className="product-info">
-        <div className="product-title-row">
-          <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
-            <h3 className="product-title">{product.name}</h3>
-          </Link>
+        <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+          <h3 className="product-title">{product.name}</h3>
+        </Link>
+        <div className="product-rating-minimal">
+          {[...Array(5)].map((_, i) => (
+             <span key={i} className="star">★</span>
+          ))}
         </div>
-        <div className="product-meta-row">
-          <span className="product-collection">{collectionName}</span>
-          <div className="product-rating-minimal">
-            <span className="star">★</span>
-            <span className="rating-val">{product.rating}</span>
-            <span className="review-count">({product.reviewCount})</span>
-          </div>
-        </div>
-        <span className="price-current">₹ {product.price.toLocaleString('en-IN')}</span>
+        <span className="price-current">Rs. {product.price.toLocaleString('en-IN')}.00</span>
       </div>
     </div>
   );
