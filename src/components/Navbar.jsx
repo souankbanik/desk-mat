@@ -12,18 +12,19 @@ const Navbar = ({ cartCount, toggleCart }) => {
   return (
     <div className="navbar-wrapper">
       <nav className="navbar container">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          {/* Hamburger hidden temporarily */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <button 
             className="hamburger-btn" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
+            style={{ position: 'relative', zIndex: 110 }}
           >
             ☰
           </button>
           <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ position: 'relative', width: '300px', height: '85px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '5px', top: '2.5px' }}>
-              <Image src="/logo.png" alt="DMND+" fill style={{ objectFit: 'contain', transform: 'scale(2.2)' }} priority />
+            {/* Reduced width/height on the container so it doesn't invisible-block the buttons */}
+            <div className="nav-logo-img-wrapper" style={{ position: 'relative', width: '180px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '5px' }}>
+              <Image src="/logo.png" alt="DMND+" fill style={{ objectFit: 'contain', transform: 'scale(1.8)' }} priority />
             </div>
           </Link>
         </div>
@@ -35,14 +36,14 @@ const Navbar = ({ cartCount, toggleCart }) => {
           <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginRight: '-12px' }}>
-          <button aria-label="Search" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Search size={18} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginRight: '-20px', position: 'relative', zIndex: 110 }}>
+          <button aria-label="Search" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px' }}>
+            <Search size={16} />
           </button>
-          <button aria-label="Shopping Cart" className="nav-cart" onClick={toggleCart} style={{ padding: '8px', display: 'flex', alignItems: 'center', position: 'relative', border: 'none', background: 'none' }}>
-            <ShoppingCart size={18} />
+          <button aria-label="Shopping Cart" className="nav-cart" onClick={toggleCart} style={{ padding: '4px', display: 'flex', alignItems: 'center', position: 'relative', border: 'none', background: 'none' }}>
+            <ShoppingCart size={16} />
             {cartCount > 0 && (
-              <span style={{ position: 'absolute', top: '0px', right: '0px', background: 'var(--color-primary)', color: 'white', fontSize: '0.7rem', fontWeight: 'bold', width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
+              <span style={{ position: 'absolute', top: '-2px', right: '-4px', background: 'var(--color-primary)', color: 'white', fontSize: '0.65rem', fontWeight: 'bold', width: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
                 {cartCount}
               </span>
             )}
