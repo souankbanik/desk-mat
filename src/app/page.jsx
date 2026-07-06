@@ -32,11 +32,11 @@ export default function Home() {
         <TrustBanner />
         <BannerCarousel />
         
-        <ProductCarousel title="NEW ARRIVALS" products={collections.newArrivals} addToCart={addToCart} />
-        <ProductCarousel title="BEST SELLERS" products={collections.bestSellers} addToCart={addToCart} />
-        <ProductCarousel title="ANIME COLLECTION" products={collections.animeCollection} addToCart={addToCart} />
-        <ProductCarousel title="MINIMAL COLLECTION" products={collections.minimalCollection} addToCart={addToCart} />
-        <ProductCarousel title="LIMITED EDITION" products={collections.limitedEdition} addToCart={addToCart} />
+        <ProductCarousel title="NEW ARRIVALS" link="/collections/new-arrivals" products={collections.newArrivals} addToCart={addToCart} />
+        <ProductCarousel title="BEST SELLERS" link="/collections/best-sellers" products={collections.bestSellers} addToCart={addToCart} />
+        <ProductCarousel title="ANIME COLLECTION" link="/collections/anime-collection" products={collections.animeCollection} addToCart={addToCart} />
+        <ProductCarousel title="MINIMAL COLLECTION" link="/collections/minimal-collection" products={collections.minimalCollection} addToCart={addToCart} />
+        <ProductCarousel title="LIMITED EDITION" link="/collections/limited-edition" products={collections.limitedEdition} addToCart={addToCart} />
         
         <Reviews />
         <FAQ />

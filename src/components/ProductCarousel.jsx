@@ -2,9 +2,10 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const ProductCarousel = ({ title, products, addToCart }) => {
+const ProductCarousel = ({ title, link, products, addToCart }) => {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
@@ -60,7 +61,13 @@ const ProductCarousel = ({ title, products, addToCart }) => {
     <section className="product-carousel-section">
       <div className="container">
         <div className="product-carousel-header">
-          <h2 className="product-carousel-title">{title}</h2>
+          {link ? (
+            <Link href={link} className="product-carousel-title-link">
+              <h2 className="product-carousel-title">{title}</h2>
+            </Link>
+          ) : (
+            <h2 className="product-carousel-title">{title}</h2>
+          )}
         </div>
         
         <div className="product-carousel-wrapper">
