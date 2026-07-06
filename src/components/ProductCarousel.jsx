@@ -14,7 +14,7 @@ const ProductCarousel = ({ title, products, addToCart }) => {
       const clientWidth = scrollRef.current.clientWidth;
       const scrollWidth = scrollRef.current.scrollWidth;
       // Calculate how many full or partial viewports we have
-      const pages = Math.ceil(scrollWidth / clientWidth);
+      const pages = Math.round(scrollWidth / clientWidth);
       setTotalPages(Math.max(1, pages));
     }
   };
