@@ -1,65 +1,51 @@
-<footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-col">
-      <h3 class="footer-logo">{{ shop.name }}</h3>
-      <p class="footer-desc">
-        {{ section.settings.description | default: "Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence." }}
-      </p>
+<footer class="footer-section" style="padding: 80px 24px 40px; border-top: 1px solid var(--border-subtle); background: var(--bg-secondary);">
+  <div class="container" style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 60px;">
+      
+      <div class="footer-brand" style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="position: relative; width: 180px; height: 60px; margin-left: -15px;">
+          <img src="{{ 'logo.png' | asset_url }}" alt="DMND+" style="width: 100%; height: 100%; object-fit: contain; transform: scale(1.8);" />
+        </div>
+        <p class="text-secondary" style="color: var(--text-secondary); line-height: 1.6;">
+          Built to Inspire. Premium desk essentials designed for gamers, creators, and professionals who demand visual excellence.
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <h4 style="font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Shop</h4>
+        <a href="{{ routes.all_products_collection_url }}" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">All Products</a>
+        <a href="{{ collections['new-arrivals'].url }}" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">New Arrivals</a>
+        <a href="{{ collections['best-sellers'].url }}" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">Best Sellers</a>
+        <a href="{{ collections['limited-edition'].url }}" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">Limited Edition</a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <h4 style="font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Support</h4>
+        <a href="/pages/contact" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">Contact Us</a>
+        <a href="/apps/track-order" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">Track Order</a>
+        <a href="/policies/shipping-policy" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">Shipping Policy</a>
+        <a href="/policies/refund-policy" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">Returns & Exchanges</a>
+      </div>
+
     </div>
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul class="footer-links">
-        {% for link in section.settings.shop_menu.links %}
-          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--border-highlight); padding-top: 32px;">
+      <p style="color: var(--text-light); font-size: 14px;">&copy; {{ 'now' | date: "%Y" }} DMND+. All rights reserved.</p>
+      <div style="display: flex; gap: 24px;">
+        <a href="/policies/privacy-policy" style="color: var(--text-light); text-decoration: none; font-size: 14px;">Privacy Policy</a>
+        <a href="/policies/terms-of-service" style="color: var(--text-light); text-decoration: none; font-size: 14px;">Terms of Service</a>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <ul class="footer-links">
-        {% for link in section.settings.support_menu.links %}
-          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <ul class="footer-links">
-        {% if settings.social_twitter_link != blank %}
-          <li><a href="{{ settings.social_twitter_link }}">Twitter</a></li>
-        {% endif %}
-        {% if settings.social_instagram_link != blank %}
-          <li><a href="{{ settings.social_instagram_link }}">Instagram</a></li>
-        {% endif %}
-        {% if settings.social_youtube_link != blank %}
-          <li><a href="{{ settings.social_youtube_link }}">YouTube</a></li>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-  <div class="container footer-bottom">
-    <p>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. All rights reserved.</p>
   </div>
 </footer>
 
 {% schema %}
 {
   "name": "Footer",
-  "settings": [
+  "settings": [],
+  "presets": [
     {
-      "type": "textarea",
-      "id": "description",
-      "label": "Brand Description"
-    },
-    {
-      "type": "link_list",
-      "id": "shop_menu",
-      "label": "Shop Menu"
-    },
-    {
-      "type": "link_list",
-      "id": "support_menu",
-      "label": "Support Menu"
+      "name": "Default Footer"
     }
   ]
 }
