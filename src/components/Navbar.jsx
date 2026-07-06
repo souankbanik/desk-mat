@@ -38,6 +38,7 @@ const Navbar = ({ cartCount, toggleCart }) => {
           <Link href="/#collection" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Shop</Link>
           <Link href="/track-order" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Track Order</Link>
           <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
+          <Link href="/wishlist" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Wishlist</Link>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginRight: '-20px', position: 'relative', zIndex: 110 }}>
