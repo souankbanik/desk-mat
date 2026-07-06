@@ -289,9 +289,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   color: #2b4877; /* Subtle blue tint matching the screenshot text */
   margin: 0;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
   line-height: 1.4;
 }
 
