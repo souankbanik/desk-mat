@@ -7,33 +7,55 @@ const Hero = () => {
   return (
     <section className="hero-section">
       <div className="hero-content container">
-        <motion.h1 
-          className="hero-title"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          ELEVATE YOUR WORKSPACE
-        </motion.h1>
-        
-        <motion.p 
-          className="hero-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence.
-        </motion.p>
+        <div className="hero-text-block">
+          <motion.h1 
+            className="hero-title"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            ELEVATE YOUR<br />WORKSPACE
+          </motion.h1>
+          
+          <motion.p 
+            className="hero-subtitle"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence.
+          </motion.p>
+
+          <motion.div 
+            className="hero-actions"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <a href="#collection" className="btn-primary">
+              Shop Collection
+            </a>
+          </motion.div>
+        </div>
 
         <motion.div 
-          className="hero-actions"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          className="hero-image-block"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <a href="#collection" className="btn-primary">
-            Shop Collection
-          </a>
+          <div className="hero-image-bg"></div>
+          <motion.div
+            style={{ width: '100%', height: '100%', position: 'relative' }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <img 
+              src="/images/hero-picture.jpg" 
+              alt="Premium Desk Setup" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>
