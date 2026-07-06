@@ -68,7 +68,7 @@ export default async function CollectionPage({ params }) {
           </div>
           
           {products.length > 0 ? (
-            <div className="products-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '32px', padding: '40px 0' }}>
+            <div className="collection-grid">
               {products.map(product => (
                 <div key={product.id} className="product-card">
                   <div className="product-image-container">

@@ -680,6 +680,27 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-secondary);
 }
 
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding: 40px 0;
+}
+
+@media (max-width: 1024px) {
+  .collection-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 24px 0;
+  }
+}
+
 .product-carousel-wrapper {
   position: relative;
   width: 100%;
