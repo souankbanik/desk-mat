@@ -8,44 +8,38 @@ import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 const ProductCarousel = ({ title, link, products, addToCart }) => {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [totalPages, setTotalPages] = useState(1);
-
-  const calculatePages = () => {
-    if (scrollRef.current) {
-      const clientWidth = scrollRef.current.clientWidth;
-      const scrollWidth = scrollRef.current.scrollWidth;
-      // Calculate how many full or partial viewports we have
-      const pages = Math.round(scrollWidth / clientWidth);
-      setTotalPages(Math.max(1, pages));
-    }
-  };
-
-  useEffect(() => {
-    // Initial calculation
-    calculatePages();
-    
-    // Add resize listener to recalculate if screen size changes
-    window.addEventListener('resize', calculatePages);
-    return () => window.removeEventListener('resize', calculatePages);
-  }, [products]);
 
   const handleScroll = () => {
     if (scrollRef.current) {
       const scrollPosition = scrollRef.current.scrollLeft;
-      const clientWidth = scrollRef.current.clientWidth;
-      // Determine which page we are currently looking at
-      const index = Math.round(scrollPosition / clientWidth);
-      setActiveIndex(index);
+      // We need to calculate item width based on the first child
+      const firstChild = scrollRef.current.children[0];
+      if (firstChild) {
+        // Include gap in item width calculation
+        const style = window.getComputedStyle(scrollRef.current);
+        const gap = parseInt(style.gap) || 0;
+        const itemWidth = firstChild.clientWidth + gap;
+        
+        const index = Math.round(scrollPosition / itemWidth);
+        // Ensure index doesn't exceed array bounds
+        setActiveIndex(Math.min(index, products.length - 1));
+      }
     }
   };
 
-  const scrollTo = (pageIndex) => {
+  const scrollTo = (index) => {
     if (scrollRef.current) {
-      const clientWidth = scrollRef.current.clientWidth;
-      scrollRef.current.scrollTo({
-        left: pageIndex * clientWidth,
-        behavior: 'smooth'
-      });
+      const firstChild = scrollRef.current.children[0];
+      if (firstChild) {
+        const style = window.getComputedStyle(scrollRef.current);
+        const gap = parseInt(style.gap) || 0;
+        const itemWidth = firstChild.clientWidth + gap;
+        
+        scrollRef.current.scrollTo({
+          left: index * itemWidth,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
@@ -54,7 +48,7 @@ const ProductCarousel = ({ title, link, products, addToCart }) => {
   };
 
   const scrollNext = () => {
-    scrollTo(Math.min(totalPages - 1, activeIndex + 1));
+    scrollTo(Math.min(products.length - 1, activeIndex + 1));
   };
 
   return (
@@ -106,26 +100,26 @@ const ProductCarousel = ({ title, link, products, addToCart }) => {
           <button 
             className={`carousel-nav-btn prev product-nav ${activeIndex === 0 ? 'disabled' : ''}`} 
             onClick={scrollPrev}
-            aria-label="Previous page"
+            aria-label="Previous product"
           >
             <ChevronLeft size={24} />
           </button>
           
           <button 
-            className={`carousel-nav-btn next product-nav ${activeIndex >= totalPages - 1 ? 'disabled' : ''}`} 
+            className={`carousel-nav-btn next product-nav ${activeIndex >= products.length - 1 ? 'disabled' : ''}`} 
             onClick={scrollNext}
-            aria-label="Next page"
+            aria-label="Next product"
           >
             <ChevronRight size={24} />
           </button>
           
           <div className="carousel-dots">
-            {Array.from({ length: totalPages }).map((_, idx) => (
+            {products.map((_, idx) => (
               <button 
                 key={idx}
                 className={`carousel-dot ${activeIndex === idx ? 'active' : ''}`}
                 onClick={() => scrollTo(idx)}
-                aria-label={`Go to page ${idx + 1}`}
+                aria-label={`Go to product ${idx + 1}`}
               />
             ))}
           </div>
