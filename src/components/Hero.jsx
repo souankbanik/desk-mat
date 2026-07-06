@@ -40,15 +40,18 @@ const Hero = () => {
 
         <div className="hero-image-block">
           <div className="hero-image-bg"></div>
-          <motion.img 
-            src="/images/hero-picture.jpg" 
-            alt="Premium Desk Setup" 
-            className="hero-img-element"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
-          />
+          <picture style={{ width: '100%', height: '100%', display: 'block' }}>
+            <source media="(max-width: 992px)" srcSet="/images/hero-picture-mobile.jpg" />
+            <motion.img 
+              src="/images/hero-picture.jpg" 
+              alt="Premium Desk Setup" 
+              className="hero-img-element"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+            />
+          </picture>
         </div>
       </div>
     </section>
