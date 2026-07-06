@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
@@ -32,9 +33,9 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <a href="#collection" className="btn-primary">
+            <Link href="/collections/all" className="btn-primary">
               Shop Collection
-            </a>
+            </Link>
           </motion.div>
         </div>
 
