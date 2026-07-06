@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const banners = [
   {
@@ -45,6 +46,14 @@ const BannerCarousel = () => {
     }
   };
 
+  const scrollPrev = () => {
+    scrollTo(Math.max(0, activeIndex - 1));
+  };
+
+  const scrollNext = () => {
+    scrollTo(Math.min(banners.length - 1, activeIndex + 1));
+  };
+
   return (
     <section className="banner-carousel-section">
       <div className="container">
@@ -68,6 +77,22 @@ const BannerCarousel = () => {
               </div>
             ))}
           </div>
+          
+          <button 
+            className={`carousel-nav-btn prev ${activeIndex === 0 ? 'disabled' : ''}`} 
+            onClick={scrollPrev}
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          
+          <button 
+            className={`carousel-nav-btn next ${activeIndex === banners.length - 1 ? 'disabled' : ''}`} 
+            onClick={scrollNext}
+            aria-label="Next slide"
+          >
+            <ChevronRight size={24} />
+          </button>
           
           <div className="carousel-dots">
             {banners.map((_, idx) => (
