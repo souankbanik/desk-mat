@@ -131,6 +131,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     z-index: 0;
+    aspect-ratio: auto;
+    display: block;
   }
   .hero-image-block img {
     border-radius: 0 !important;
