@@ -741,7 +741,6 @@ h1, h2, h3, h4, h5, h6 {
 .product-carousel-scroll-container {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -754,7 +753,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .product-carousel-slide {
   flex: 0 0 calc(25% - 18px); /* 4 items on desktop */
-  scroll-snap-align: start;
 }
 
 @media (max-width: 1024px) {
