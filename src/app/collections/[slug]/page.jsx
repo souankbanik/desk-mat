@@ -1,10 +1,14 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { collections } from '../../../data/products';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import ProductCard from '../../../components/ProductCard';
+import CartDrawer from '../../../components/CartDrawer';
+import { use } from 'react';
 
 // Helper to format slug to title
 const formatTitle = (slug) => {
@@ -23,19 +27,20 @@ const getCollectionKey = (slug) => {
   return camelCase;
 };
 
-export function generateStaticParams() {
-  return [
-    { slug: 'new-arrivals' },
-    { slug: 'best-sellers' },
-    { slug: 'anime-collection' },
-    { slug: 'minimal-collection' },
-    { slug: 'limited-edition' },
-  ];
-}
-
-export default async function CollectionPage({ params }) {
-  // Next.js 15+ requires awaiting params
-  const { slug } = await params;
+export default function CollectionPage({ params }) {
+  // Use React.use() to unwrap params
+  const unwrappedParams = use(params);
+  const slug = unwrappedParams.slug;
+  
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  
+  const toggleCart = () => setIsCartOpen(!isCartOpen);
+  
+  const addToCart = (quantity = 1) => {
+    setCartCount(prev => prev + quantity);
+    setIsCartOpen(true);
+  };
   
   const title = formatTitle(slug);
   const collectionKey = getCollectionKey(slug);
@@ -43,34 +48,23 @@ export default async function CollectionPage({ params }) {
 
   return (
     <div className="app-container">
-      {/* Simple navbar for subpages */}
-      <div className="navbar-wrapper">
-        <div className="container">
-          <nav className="navbar">
-            <Link href="/" className="nav-logo">DMND+</Link>
-            <div className="nav-links">
-              <Link href="/" className="nav-link">Home</Link>
-              <Link href="/#collection" className="nav-link">Shop</Link>
-            </div>
-          </nav>
-        </div>
-      </div>
+      <Navbar cartCount={cartCount} toggleCart={toggleCart} />
       
-      <main className="collection-page">
+      <main className="collection-page" style={{ paddingTop: '40px', paddingBottom: '80px', minHeight: '80vh' }}>
         <div className="container">
-          <div className="collection-header">
-            <Link href="/" className="back-link">
+          <div className="collection-header" style={{ marginBottom: '40px' }}>
+            <Link href="/" className="back-link" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', marginBottom: '20px', textDecoration: 'none' }}>
               <ArrowLeft size={20} />
               <span>Back to Home</span>
             </Link>
-            <h1 className="collection-title">{title}</h1>
-            <p className="collection-count">{products.length} Products</p>
+            <h1 className="collection-title" style={{ fontSize: '40px', fontFamily: 'var(--font-outfit)', fontWeight: '700', marginBottom: '8px' }}>{title}</h1>
+            <p className="collection-count" style={{ color: 'var(--text-secondary)' }}>{products.length} Products</p>
           </div>
           
           {products.length > 0 ? (
-            <div className="collection-grid">
+            <div className="collection-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
               {products.map(product => (
-                <ProductCard key={product.id} product={product} collectionName="Desk Mats" />
+                <ProductCard key={product.id} product={product} collectionName="Desk Mats" addToCart={addToCart} />
               ))}
             </div>
           ) : (
@@ -83,6 +77,12 @@ export default async function CollectionPage({ params }) {
       </main>
       
       <Footer />
+      
+      <CartDrawer 
+        isOpen={isCartOpen} 
+        toggleCart={toggleCart} 
+        cartCount={cartCount}
+      />
     </div>
   );
 }
