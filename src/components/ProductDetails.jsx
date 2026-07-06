@@ -9,7 +9,7 @@ const dimensions = [
   { id: '1200x600', label: '1200x600mm' }
 ];
 
-export default function ProductDetails({ product }) {
+export default function ProductDetails({ product, addToCart }) {
   const [selectedDim, setSelectedDim] = useState(dimensions[0].id);
   const [activeAccordion, setActiveAccordion] = useState('specs'); // 'specs' or 'shipping' or null
 
@@ -88,7 +88,7 @@ export default function ProductDetails({ product }) {
               </div>
             </div>
 
-            <button className="pd-add-to-cart">
+            <button className="pd-add-to-cart" onClick={() => addToCart(1)}>
               Add to Cart
             </button>
 
