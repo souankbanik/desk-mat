@@ -89,16 +89,15 @@ const ProductCarousel = ({ title, link, products, addToCart }) => {
                     />
                   </div>
                   <div className="product-info">
+                    <span className="product-collection">{title}</span>
                     <h3 className="product-title">{product.name}</h3>
-                    <div className="product-price-row">
-                      <span className="price-current">Rs. {product.price.toLocaleString()}</span>
-                      <button 
-                        className="btn-add-cart"
-                        onClick={() => addToCart(1)}
-                      >
-                        Add to cart
-                      </button>
+                    <div className="product-rating">
+                      ★★★★★ <span>(42)</span>
                     </div>
+                    <span className="price-current">₹{product.price.toLocaleString('en-IN')}</span>
+                    <button className="btn-view-product">
+                      View Product →
+                    </button>
                   </div>
                 </div>
               </div>
