@@ -234,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #ffffff;
   border-radius: 24px;
   overflow: hidden;
-  height: 520px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -249,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-image-container {
-  height: 75%;
+  aspect-ratio: 4/5;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -268,32 +268,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-info {
-  height: 25%;
-  padding: 16px 24px;
+  flex-grow: 1;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   background: #ffffff;
   z-index: 2;
 }
 
 .product-collection {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   color: #757575;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
 }
 
 .product-title {
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
   font-weight: 600;
   color: #111111;
-  margin: 0 0 4px 0;
-  white-space: nowrap;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .product-rating {
