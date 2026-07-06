@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import ProductReviews from './ProductReviews';
 
 const dimensions = [
   { id: '900x400', label: '900x400mm' },
@@ -117,23 +118,26 @@ export default function ProductDetails({ product, addToCart }) {
               {/* Shipping & Returns */}
               <div className="pd-accordion-item">
                 <button 
-                  className="pd-accordion-trigger" 
+                  className="pd-accordion-trigger"
                   onClick={() => toggleAccordion('shipping')}
                 >
-                  <span className="pd-accordion-title">Shipping & Returns</span>
+                  <span>Shipping & Returns</span>
                   {activeAccordion === 'shipping' ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </button>
                 <div className={`pd-accordion-content ${activeAccordion === 'shipping' ? 'open' : ''}`}>
-                  <p>Free standard shipping on all orders within India. Orders typically arrive within 3-5 business days.</p>
-                  <p className="pd-mt-2">Not satisfied? Return your mat within 14 days for a full refund, no questions asked.</p>
+                  <p>Free standard shipping on all orders. Expedited shipping available at checkout.</p>
+                  <p>Returns accepted within 30 days of delivery. Custom desk mats are final sale.</p>
                 </div>
               </div>
               
             </div>
+            
           </div>
-          
         </div>
       </div>
+      
+      {/* Product Reviews Section */}
+      <ProductReviews />
     </div>
   );
 }
