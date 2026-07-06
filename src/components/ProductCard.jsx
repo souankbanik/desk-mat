@@ -5,9 +5,31 @@ import { Heart, ShoppingBag } from 'lucide-react';
 
 const ProductCard = ({ product, collectionName, addToCart }) => {
   return (
-    <div className="product-card">
-      <div className="product-image-container">
-        <Link href={`/products/${product.id}`} className="product-image-link">
+    <div className="product-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div 
+        className="product-image-container"
+        style={{
+          width: '100%',
+          paddingBottom: '56.25%', /* 16:9 Aspect Ratio */
+          position: 'relative',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          backgroundColor: '#f8f9fa',
+          marginBottom: '12px'
+        }}
+      >
+        <Link 
+          href={`/products/${product.id}`} 
+          className="product-image-link"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'block'
+          }}
+        >
           <Image 
             src={product.image} 
             alt={product.name} 
