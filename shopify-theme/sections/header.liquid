@@ -13,9 +13,16 @@
           <span class="hamburger-line"></span>
         </button>
         <a href="{{ routes.root_url }}" class="nav-logo" style="display: flex; align-items: center;">
-          <div class="nav-logo-img-wrapper" style="position: relative; width: 180px; height: 60px; display: flex; align-items: center; justify-content: center; margin-left: 5px;">
-             <!-- Depending on Liquid setup, output the logo image, for now text fallback or hardcoded logo -->
-             <span style="font-size: 24px; font-weight: bold; font-family: var(--font-michroma);">{{ shop.name }}</span>
+          <div class="nav-logo-img-wrapper" style="position: relative; height: 60px; display: flex; align-items: center; justify-content: center; margin-left: 5px;">
+            {% if section.settings.logo != blank %}
+              <img 
+                src="{{ section.settings.logo | image_url: height: 120 }}" 
+                alt="{{ shop.name }}" 
+                style="max-height: 40px; width: auto;"
+              >
+            {% else %}
+              <span style="font-size: 24px; font-weight: bold; font-family: var(--font-michroma);">{{ shop.name }}</span>
+            {% endif %}
           </div>
         </a>
       </div>
@@ -46,6 +53,11 @@
 {
   "name": "Header",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
     {
       "type": "link_list",
       "id": "menu",
