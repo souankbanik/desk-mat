@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} ${outfit.variable} ${michroma.variable} ${spaceMono.variable}`}>
-        <div style={{ backgroundColor: '#000000', color: '#ffffff', textAlign: 'center', padding: '10px 20px', fontSize: '0.8rem', fontWeight: '600', letterSpacing: '1.5px', textTransform: 'uppercase', zIndex: 1000, position: 'relative' }}>
+        <div style={{ backgroundColor: '#000000', color: '#ffffff', textAlign: 'center', padding: '10px 20px', fontSize: '10px', fontWeight: '600', letterSpacing: '1.5px', textTransform: 'uppercase', zIndex: 1000, position: 'relative' }}>
           🎉 Get 10% OFF when you order 2 or more desk mats!
         </div>
         {children}
