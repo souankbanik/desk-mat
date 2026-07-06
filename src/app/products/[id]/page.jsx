@@ -44,7 +44,7 @@ export default async function ProductPage({ params }) {
   }
 
   return (
-    <div className="app-container product-page-dark-theme-wrapper">
+    <div className="app-container">
       <Navbar />
       <div className="pd-breadcrumb-container container">
          <Link href="/" className="back-link">

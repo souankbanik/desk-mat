@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product"
+    },
+    "related_products": {
+      "type": "product-carousel",
+      "settings": {
+        "title": "You May Also Like"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related_products"
+  ]
+}

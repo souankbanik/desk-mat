@@ -1,0 +1,108 @@
+<div class="product-page-wrapper">
+  <div class="pd-breadcrumb-container container">
+     <a href="{{ routes.root_url }}" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        <span>Back to Home</span>
+     </a>
+  </div>
+  
+  <div class="product-details-page">
+    <div class="pd-container">
+      <div class="pd-grid">
+        
+        <!-- Left Column: Gallery -->
+        <div class="pd-gallery-column">
+          <div class="pd-gallery-sticky">
+            <div class="pd-main-image-wrapper">
+              <img 
+                src="{{ product.featured_image | image_url: width: 1200 }}" 
+                alt="{{ product.title | escape }}"
+                class="pd-main-image"
+              >
+            </div>
+            
+            {% if product.images.size > 1 %}
+              <div class="pd-thumbnail-row">
+                {% for image in product.images %}
+                  <div class="pd-thumbnail {% if forloop.first %}active{% endif %}">
+                    <img 
+                      src="{{ image | image_url: width: 400 }}" 
+                      alt="{{ image.alt | escape }}"
+                    >
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Right Column: Info -->
+        <div class="pd-info-column">
+          <div class="pd-header">
+            <h1 class="pd-title">{{ product.title }}</h1>
+            
+            <div class="pd-rating">
+              <span class="pd-star">★</span>
+              <span class="pd-rating-val">4.9</span>
+              <span class="pd-review-count">(128 reviews)</span>
+            </div>
+            
+            <div class="pd-price">{{ product.price | money }}</div>
+          </div>
+
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            
+            {% unless product.has_only_default_variant %}
+              <div class="pd-dimensions-section">
+                <h3 class="pd-section-label">Variant</h3>
+                <div class="pd-dimensions-grid">
+                  {% for variant in product.variants %}
+                    <button type="button" class="pd-dim-btn {% if forloop.first %}active{% endif %}">
+                      {{ variant.title }}
+                    </button>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endunless %}
+
+            <button type="submit" name="add" class="pd-add-to-cart" {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}Add to Cart{% else %}Sold Out{% endif %}
+            </button>
+          {% endform %}
+
+          <!-- Accordion Section (Requires JS) -->
+          <div class="pd-accordion-container">
+            <div class="pd-accordion-item">
+              <button class="pd-accordion-trigger">
+                <span class="pd-accordion-title">Specifications</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="pd-accordion-content open">
+                {{ product.description }}
+              </div>
+            </div>
+            
+            <div class="pd-accordion-item">
+              <button class="pd-accordion-trigger">
+                <span class="pd-accordion-title">Shipping & Returns</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="pd-accordion-content">
+                <p>Free standard shipping on all orders. Returns accepted within 14 days.</p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" IE="edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <!-- Google Fonts import to match Next.js config -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&family=Outfit:wght@400;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- CSS Variable Definitions mapping from Google Fonts -->
+    <style>
+      :root {
+        --font-inter: 'Inter', sans-serif;
+        --font-outfit: 'Outfit', sans-serif;
+        --font-michroma: 'Michroma', sans-serif;
+        --font-space-mono: 'Space Mono', monospace;
+      }
+    </style>
+
+    {{ content_for_header }}
+
+    <!-- Theme CSS -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+
+  <body>
+    <!-- Promo Banner (Equivalent to Next.js RootLayout Banner) -->
+    <div style="background-color: #000000; color: #ffffff; text-align: center; padding: 10px 20px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; z-index: 1000; position: relative;">
+      🎉 Get 10% OFF when you order 2 or more desk mats!
+    </div>
+
+    {% section 'header' %}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+  </body>
+</html>

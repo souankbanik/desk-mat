@@ -1,0 +1,55 @@
+{% comment %}
+  Accepts:
+  - product: {Object} Product Liquid object
+  - collection_name: {String} (Optional)
+{% endcomment %}
+
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-image-container">
+    {% if product.featured_image %}
+      <img 
+        src="{{ product.featured_image | image_url: width: 800 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        class="product-image"
+        loading="lazy"
+        width="{{ product.featured_image.width }}"
+        height="{{ product.featured_image.height }}"
+      >
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'product-image' }}
+    {% endif %}
+  </a>
+  <div class="product-info">
+    <div class="product-title-row">
+      <a href="{{ product.url }}" style="text-decoration: none;">
+        <h3 class="product-title">{{ product.title }}</h3>
+      </a>
+      <button class="btn-wishlist" aria-label="Add to wishlist">
+        <!-- SVG for Heart -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+      </button>
+    </div>
+    
+    <div class="product-meta-row">
+      <span class="product-collection">
+        {% if collection_name %}
+          {{ collection_name }}
+        {% elsif product.collections.size > 0 %}
+          {{ product.collections.first.title }}
+        {% else %}
+          Desk Mats
+        {% endif %}
+      </span>
+      
+      <!-- Liquid doesn't have native ratings unless you use metafields (e.g., product.metafields.reviews.rating.value) -->
+      <!-- Hardcoded placeholder to match our dummy data aesthetic until an app is installed -->
+      <div class="product-rating-minimal">
+        <span class="star">★</span>
+        <span class="rating-val">4.8</span>
+        <span class="review-count">(12)</span>
+      </div>
+    </div>
+    
+    <span class="price-current">{{ product.price | money }}</span>
+  </div>
+</div>

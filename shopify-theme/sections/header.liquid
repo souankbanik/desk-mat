@@ -1,0 +1,40 @@
+<div class="navbar-wrapper">
+  <div class="container">
+    <nav class="navbar">
+      <a href="{{ routes.root_url }}" class="nav-logo">{{ shop.name }}</a>
+      <div class="nav-links">
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+      <div class="nav-actions">
+        <a href="{{ routes.search_url }}" class="nav-icon" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </a>
+        <a href="{{ routes.account_url }}" class="nav-icon" aria-label="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="{{ routes.cart_url }}" class="nav-icon" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          {% if cart.item_count > 0 %}
+            <span class="cart-badge">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}

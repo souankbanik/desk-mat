@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "banner": {
+      "type": "hero-banner",
+      "blocks": {
+        "slide": {
+          "type": "slide",
+          "settings": {
+            "title": "Shop the Collection"
+          }
+        }
+      },
+      "block_order": [
+        "slide"
+      ]
+    },
+    "main": {
+      "type": "product-carousel",
+      "settings": {
+        "title": "All Products",
+        "products_to_show": 12
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main"
+  ]
+}

@@ -1,0 +1,66 @@
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h3 class="footer-logo">{{ shop.name }}</h3>
+      <p class="footer-desc">
+        {{ section.settings.description | default: "Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence." }}
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul class="footer-links">
+        {% for link in section.settings.shop_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul class="footer-links">
+        {% for link in section.settings.support_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul class="footer-links">
+        {% if settings.social_twitter_link != blank %}
+          <li><a href="{{ settings.social_twitter_link }}">Twitter</a></li>
+        {% endif %}
+        {% if settings.social_instagram_link != blank %}
+          <li><a href="{{ settings.social_instagram_link }}">Instagram</a></li>
+        {% endif %}
+        {% if settings.social_youtube_link != blank %}
+          <li><a href="{{ settings.social_youtube_link }}">YouTube</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. All rights reserved.</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Brand Description"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Shop Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "support_menu",
+      "label": "Support Menu"
+    }
+  ]
+}
+{% endschema %}
