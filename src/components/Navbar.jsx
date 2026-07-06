@@ -5,9 +5,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Search, ShoppingCart } from 'lucide-react';
+import SearchOverlay from './SearchOverlay';
 
 const Navbar = ({ cartCount, toggleCart }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <div className="navbar-wrapper">
@@ -39,7 +41,7 @@ const Navbar = ({ cartCount, toggleCart }) => {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginRight: '-20px', position: 'relative', zIndex: 110 }}>
-          <button aria-label="Search" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px' }}>
+          <button aria-label="Search" onClick={() => setIsSearchOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px' }}>
             <Search size={16} />
           </button>
           <button aria-label="Shopping Cart" className="nav-cart" onClick={toggleCart} style={{ padding: '4px', display: 'flex', alignItems: 'center', position: 'relative', border: 'none', background: 'none' }}>
@@ -52,6 +54,8 @@ const Navbar = ({ cartCount, toggleCart }) => {
           </button>
         </div>
       </nav>
+      
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </div>
   );
 };
