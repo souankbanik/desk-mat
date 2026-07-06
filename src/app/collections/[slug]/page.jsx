@@ -23,6 +23,16 @@ const getCollectionKey = (slug) => {
   return camelCase;
 };
 
+export function generateStaticParams() {
+  return [
+    { slug: 'new-arrivals' },
+    { slug: 'best-sellers' },
+    { slug: 'anime-collection' },
+    { slug: 'minimal-collection' },
+    { slug: 'limited-edition' },
+  ];
+}
+
 export default function CollectionPage({ params }) {
   // In a real app, you would await params if Next.js 15 requires it, 
   // but standard Next.js 13/14 passes it directly. 
