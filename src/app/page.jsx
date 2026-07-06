@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TrustBanner from '../components/TrustBanner';
+import BannerCarousel from '../components/BannerCarousel';
 import ProductGrid from '../components/ProductGrid';
 import Reviews from '../components/Reviews';
 import CartDrawer from '../components/CartDrawer';
@@ -28,6 +29,7 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBanner />
+        <BannerCarousel />
         <ProductGrid addToCart={addToCart} />
         <Reviews />
         <FAQ />

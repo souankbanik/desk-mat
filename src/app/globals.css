@@ -430,3 +430,130 @@ h1, h2, h3, h4, h5, h6 {
   gap: 16px;
   flex-shrink: 0;
 }
+
+/* --- Banner Carousel --- */
+.banner-carousel-section {
+  padding: 60px 0;
+  background-color: var(--bg-primary);
+}
+
+.banner-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+.carousel-scroll-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.carousel-slide {
+  min-width: 100%;
+  scroll-snap-align: start;
+  padding-right: 1px; /* Prevent rounding bugs */
+}
+
+.banner-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .banner-image-wrapper {
+    aspect-ratio: 1/1;
+  }
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: transform 0.5s ease;
+}
+
+.banner-image-wrapper:hover .banner-image {
+  transform: scale(1.05);
+}
+
+.banner-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .banner-overlay {
+    padding: 24px;
+  }
+}
+
+.banner-badge {
+  padding: 6px 12px;
+  border: 1px solid #d9a05b;
+  color: #d9a05b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.banner-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border-subtle);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+  background-color: var(--text-primary);
+  width: 24px;
+  border-radius: 4px;
+}
