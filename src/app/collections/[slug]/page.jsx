@@ -33,11 +33,9 @@ export function generateStaticParams() {
   ];
 }
 
-export default function CollectionPage({ params }) {
-  // In a real app, you would await params if Next.js 15 requires it, 
-  // but standard Next.js 13/14 passes it directly. 
-  // Next 15 requires async params, so we'll treat it standardly.
-  const { slug } = params;
+export default async function CollectionPage({ params }) {
+  // Next.js 15+ requires awaiting params
+  const { slug } = await params;
   
   const title = formatTitle(slug);
   const collectionKey = getCollectionKey(slug);
