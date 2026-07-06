@@ -35,7 +35,7 @@ export default function CollectionClient({ title, products }) {
           </div>
           
           {products.length > 0 ? (
-            <div className="collection-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+            <div className="responsive-product-grid">
               {products.map(product => (
                 <ProductCard key={product.id} product={product} collectionName="Desk Mats" addToCart={addToCart} />
               ))}

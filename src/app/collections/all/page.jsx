@@ -43,11 +43,7 @@ export default function AllCollectionsPage() {
           </p>
         </div>
         
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-          gap: '24px' 
-        }}>
+        <div className="responsive-product-grid">
           {allProducts.map(product => (
             <ProductCard 
               key={product.id} 
