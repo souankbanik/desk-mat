@@ -150,3 +150,25 @@ export const collections = {
     }
   ]
 };
+
+// A simple pseudo-random number generator to ensure consistent values between server and client hydration
+function seededRandom(seed) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+Object.values(collections).forEach(category => {
+  category.forEach((product, i) => {
+    // Generate a consistent "random" number based on the product ID
+    let seed = 0;
+    for (let j = 0; j < product.id.length; j++) {
+      seed += product.id.charCodeAt(j);
+    }
+    
+    const rand1 = seededRandom(seed + i);
+    const rand2 = seededRandom(seed + i + 1);
+    
+    product.reviewCount = Math.floor(rand1 * 18) + 3; // 3 to 20
+    product.rating = (Math.floor(rand2 * 11) / 10 + 4.0).toFixed(1); // 4.0 to 5.0
+  });
+});

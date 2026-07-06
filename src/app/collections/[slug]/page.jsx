@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowLeft, Heart } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { collections } from '../../../data/products';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+import ProductCard from '../../../components/ProductCard';
 
 // Helper to format slug to title
 const formatTitle = (slug) => {
@@ -70,28 +70,7 @@ export default async function CollectionPage({ params }) {
           {products.length > 0 ? (
             <div className="collection-grid">
               {products.map(product => (
-                <div key={product.id} className="product-card">
-                  <div className="product-image-container">
-                    <Image 
-                      src={product.image} 
-                      alt={product.name} 
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      style={{ objectFit: 'cover' }}
-                      className="product-image"
-                    />
-                  </div>
-                  <div className="product-info">
-                    <div className="product-title-row">
-                      <h3 className="product-title">{product.name}</h3>
-                      <button className="btn-wishlist" aria-label="Add to wishlist">
-                        <Heart size={18} />
-                      </button>
-                    </div>
-                    <span className="product-collection">Desk Mats</span>
-                    <span className="price-current">₹ {product.price.toLocaleString('en-IN')}</span>
-                  </div>
-                </div>
+                <ProductCard key={product.id} product={product} collectionName="Desk Mats" />
               ))}
             </div>
           ) : (

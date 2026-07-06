@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ProductCard from './ProductCard';
 
 const ProductCarousel = ({ title, link, products, addToCart }) => {
   const scrollRef = useRef(null);
@@ -71,28 +71,7 @@ const ProductCarousel = ({ title, link, products, addToCart }) => {
           >
             {products.map((product) => (
               <div key={product.id} className="product-carousel-slide">
-                <div className="product-card">
-                  <div className="product-image-container">
-                    <Image 
-                      src={product.image} 
-                      alt={product.name} 
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                      style={{ objectFit: 'cover' }}
-                      className="product-image"
-                    />
-                  </div>
-                  <div className="product-info">
-                    <div className="product-title-row">
-                      <h3 className="product-title">{product.name}</h3>
-                      <button className="btn-wishlist" aria-label="Add to wishlist">
-                        <Heart size={18} />
-                      </button>
-                    </div>
-                    <span className="product-collection">Desk Mats</span>
-                    <span className="price-current">₹ {product.price.toLocaleString('en-IN')}</span>
-                  </div>
-                </div>
+                <ProductCard product={product} collectionName="Desk Mats" />
               </div>
             ))}
           </div>

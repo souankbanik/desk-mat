@@ -317,6 +317,34 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+.product-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.product-rating-minimal {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+}
+
+.product-rating-minimal .star {
+  color: #111111;
+  font-size: 12px;
+}
+
+.product-rating-minimal .rating-val {
+  font-weight: 600;
+  color: #111111;
+}
+
+.product-rating-minimal .review-count {
+  color: #888888;
+}
+
 .price-current {
   font-size: 14px;
   font-weight: 700;
