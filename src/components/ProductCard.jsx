@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart } from 'lucide-react';
+
 
 const ProductCard = ({ product, collectionName }) => {
   return (
@@ -21,9 +21,6 @@ const ProductCard = ({ product, collectionName }) => {
           <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
             <h3 className="product-title">{product.name}</h3>
           </Link>
-          <button className="btn-wishlist" aria-label="Add to wishlist">
-            <Heart size={18} />
-          </button>
         </div>
         <div className="product-meta-row">
           <span className="product-collection">{collectionName}</span>
