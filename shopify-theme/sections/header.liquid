@@ -1,7 +1,24 @@
 <div class="navbar-wrapper">
   <div class="container">
     <nav class="navbar">
-      <a href="{{ routes.root_url }}" class="nav-logo">{{ shop.name }}</a>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button 
+          class="hamburger-btn" 
+          aria-label="Toggle mobile menu"
+          style="position: relative; z-index: 110;"
+          onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('mobile-open');"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <a href="{{ routes.root_url }}" class="nav-logo" style="display: flex; align-items: center;">
+          <div class="nav-logo-img-wrapper" style="position: relative; width: 180px; height: 60px; display: flex; align-items: center; justify-content: center; margin-left: 5px;">
+             <!-- Depending on Liquid setup, output the logo image, for now text fallback or hardcoded logo -->
+             <span style="font-size: 24px; font-weight: bold; font-family: var(--font-michroma);">{{ shop.name }}</span>
+          </div>
+        </a>
+      </div>
       <div class="nav-links">
         {% for link in section.settings.menu.links %}
           <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>

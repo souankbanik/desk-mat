@@ -14,12 +14,14 @@ const Navbar = ({ cartCount, toggleCart }) => {
       <nav className="navbar container">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <button 
-            className="hamburger-btn" 
+            className={`hamburger-btn ${isMobileMenuOpen ? 'open' : ''}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
             style={{ position: 'relative', zIndex: 110 }}
           >
-            ☰
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
           </button>
           <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center' }}>
             {/* Reduced width/height on the container so it doesn't invisible-block the buttons */}
