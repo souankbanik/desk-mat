@@ -1,11 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Heart } from 'lucide-react';
 
 const ProductCard = ({ product, collectionName }) => {
   return (
     <div className="product-card">
-      <div className="product-image-container">
+      <Link href={`/products/${product.id}`} className="product-image-container">
         <Image 
           src={product.image} 
           alt={product.name} 
@@ -14,10 +15,12 @@ const ProductCard = ({ product, collectionName }) => {
           style={{ objectFit: 'cover' }}
           className="product-image"
         />
-      </div>
+      </Link>
       <div className="product-info">
         <div className="product-title-row">
-          <h3 className="product-title">{product.name}</h3>
+          <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+            <h3 className="product-title">{product.name}</h3>
+          </Link>
           <button className="btn-wishlist" aria-label="Add to wishlist">
             <Heart size={18} />
           </button>
