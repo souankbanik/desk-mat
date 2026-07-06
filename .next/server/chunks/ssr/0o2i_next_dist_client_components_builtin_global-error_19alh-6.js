@@ -1,3 +1,0 @@
-module.exports=[22671,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(98821);a.n(d("[project]/Documents/antigravity/jolly-shannon/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},6559,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(98821);a.n(d("[project]/Documents/antigravity/jolly-shannon/node_modules/next/dist/client/components/builtin/global-error.js"))},22895,a=>{"use strict";a.i(22671);var b=a.i(6559);a.n(b)},53017,a=>{a.n(a.i(22895))}];
-
-//# sourceMappingURL=0o2i_next_dist_client_components_builtin_global-error_19alh-6.js.map
