@@ -39,7 +39,6 @@ const Hero = () => {
         </div>
 
         <div className="hero-image-block">
-          <div className="hero-image-bg"></div>
           <picture style={{ width: '100%', height: '100%', display: 'block' }}>
             <source media="(max-width: 992px)" srcSet="/images/hero-picture-mobile.jpg" />
             <motion.img 
