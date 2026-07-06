@@ -16,10 +16,10 @@ const ProductCard = ({ product, collectionName, addToCart }) => {
           width: '100%',
           paddingBottom: '56.25%', /* 16:9 Aspect Ratio */
           position: 'relative',
-          borderRadius: '8px',
+          borderRadius: '12px',
           overflow: 'hidden',
-          backgroundColor: '#f8f9fa',
-          border: '1px solid rgba(0,0,0,0.05)',
+          backgroundColor: '#F8F8F8',
+          border: 'none',
           marginBottom: '12px'
         }}
       >
@@ -53,10 +53,10 @@ const ProductCard = ({ product, collectionName, addToCart }) => {
               toggleWishlist(product);
             }}
           >
-            <Heart size={16} fill={isSaved ? "currentColor" : "none"} color={isSaved ? "var(--color-primary)" : "currentColor"} />
+            <Heart size={14} fill={isSaved ? "currentColor" : "none"} color={isSaved ? "var(--color-primary)" : "currentColor"} />
           </button>
           <button className="action-btn btn-cart" aria-label="Add to cart" onClick={(e) => { e.preventDefault(); if (addToCart) addToCart(1); }}>
-            <ShoppingBag size={16} />
+            <ShoppingBag size={14} />
           </button>
         </div>
       </div>

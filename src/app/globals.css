@@ -284,22 +284,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .action-btn {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #111111;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-  background: #f0f0f0;
+  background: #ffffff;
   transform: scale(1.05);
 }
 
@@ -308,14 +308,15 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   background: transparent;
-  gap: 6px;
+  gap: 0;
+  text-align: left;
 }
 
 .product-title {
   font-size: 14px;
   font-weight: 600;
   color: #111111;
-  margin: 0;
+  margin: 0 0 8px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -326,16 +327,17 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 2px;
+  margin-bottom: 4px;
 }
 
 .product-rating-minimal .star {
   color: #4b0082;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .price-current {
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   color: #111111;
 }
 
@@ -1124,7 +1126,7 @@ h1, h2, h3, h4, h5, h6 {
 .responsive-product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 @media (min-width: 768px) {
