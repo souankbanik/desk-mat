@@ -1,28 +1,48 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProductCarousel = ({ title, products, addToCart }) => {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const calculatePages = () => {
+    if (scrollRef.current) {
+      const clientWidth = scrollRef.current.clientWidth;
+      const scrollWidth = scrollRef.current.scrollWidth;
+      // Calculate how many full or partial viewports we have
+      const pages = Math.ceil(scrollWidth / clientWidth);
+      setTotalPages(Math.max(1, pages));
+    }
+  };
+
+  useEffect(() => {
+    // Initial calculation
+    calculatePages();
+    
+    // Add resize listener to recalculate if screen size changes
+    window.addEventListener('resize', calculatePages);
+    return () => window.removeEventListener('resize', calculatePages);
+  }, [products]);
 
   const handleScroll = () => {
     if (scrollRef.current) {
       const scrollPosition = scrollRef.current.scrollLeft;
-      // Assume each card roughly takes up a fraction of the container width based on view
-      const itemWidth = scrollRef.current.firstElementChild.offsetWidth;
-      const index = Math.round(scrollPosition / itemWidth);
+      const clientWidth = scrollRef.current.clientWidth;
+      // Determine which page we are currently looking at
+      const index = Math.round(scrollPosition / clientWidth);
       setActiveIndex(index);
     }
   };
 
-  const scrollTo = (index) => {
+  const scrollTo = (pageIndex) => {
     if (scrollRef.current) {
-      const itemWidth = scrollRef.current.firstElementChild.offsetWidth;
+      const clientWidth = scrollRef.current.clientWidth;
       scrollRef.current.scrollTo({
-        left: index * itemWidth,
+        left: pageIndex * clientWidth,
         behavior: 'smooth'
       });
     }
@@ -33,8 +53,7 @@ const ProductCarousel = ({ title, products, addToCart }) => {
   };
 
   const scrollNext = () => {
-    // Only scroll up to length - visible items. Approximation:
-    scrollTo(Math.min(products.length - 1, activeIndex + 1));
+    scrollTo(Math.min(totalPages - 1, activeIndex + 1));
   };
 
   return (
@@ -83,26 +102,26 @@ const ProductCarousel = ({ title, products, addToCart }) => {
           <button 
             className={`carousel-nav-btn prev product-nav ${activeIndex === 0 ? 'disabled' : ''}`} 
             onClick={scrollPrev}
-            aria-label="Previous product"
+            aria-label="Previous page"
           >
             <ChevronLeft size={24} />
           </button>
           
           <button 
-            className={`carousel-nav-btn next product-nav ${activeIndex >= products.length - 2 ? 'disabled' : ''}`} 
+            className={`carousel-nav-btn next product-nav ${activeIndex >= totalPages - 1 ? 'disabled' : ''}`} 
             onClick={scrollNext}
-            aria-label="Next product"
+            aria-label="Next page"
           >
             <ChevronRight size={24} />
           </button>
           
           <div className="carousel-dots">
-            {products.map((_, idx) => (
+            {Array.from({ length: totalPages }).map((_, idx) => (
               <button 
                 key={idx}
                 className={`carousel-dot ${activeIndex === idx ? 'active' : ''}`}
                 onClick={() => scrollTo(idx)}
-                aria-label={`Go to item ${idx + 1}`}
+                aria-label={`Go to page ${idx + 1}`}
               />
             ))}
           </div>
