@@ -5,11 +5,12 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TrustBanner from '../components/TrustBanner';
 import BannerCarousel from '../components/BannerCarousel';
-import ProductGrid from '../components/ProductGrid';
+import ProductCarousel from '../components/ProductCarousel';
 import Reviews from '../components/Reviews';
 import CartDrawer from '../components/CartDrawer';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
+import { collections } from '../data/products';
 
 export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -30,7 +31,13 @@ export default function Home() {
         <Hero />
         <TrustBanner />
         <BannerCarousel />
-        <ProductGrid addToCart={addToCart} />
+        
+        <ProductCarousel title="NEW ARRIVALS" products={collections.newArrivals} addToCart={addToCart} />
+        <ProductCarousel title="BEST SELLERS" products={collections.bestSellers} addToCart={addToCart} />
+        <ProductCarousel title="ANIME COLLECTION" products={collections.animeCollection} addToCart={addToCart} />
+        <ProductCarousel title="MINIMAL COLLECTION" products={collections.minimalCollection} addToCart={addToCart} />
+        <ProductCarousel title="LIMITED EDITION" products={collections.limitedEdition} addToCart={addToCart} />
+        
         <Reviews />
         <FAQ />
       </main>
