@@ -61,12 +61,11 @@ const ProductCarousel = ({ title, link, products, addToCart }) => {
     <section className="product-carousel-section">
       <div className="container">
         <div className="product-carousel-header">
-          {link ? (
-            <Link href={link} className="product-carousel-title-link">
-              <h2 className="product-carousel-title">{title}</h2>
+          <h2 className="product-carousel-title">{title}</h2>
+          {link && (
+            <Link href={link} className="product-carousel-view-all">
+              View All
             </Link>
-          ) : (
-            <h2 className="product-carousel-title">{title}</h2>
           )}
         </div>
         
