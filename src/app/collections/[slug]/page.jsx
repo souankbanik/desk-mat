@@ -27,6 +27,16 @@ const getCollectionKey = (slug) => {
   return camelCase;
 };
 
+export function generateStaticParams() {
+  return [
+    { slug: 'new-arrivals' },
+    { slug: 'best-sellers' },
+    { slug: 'anime-collection' },
+    { slug: 'minimal-collection' },
+    { slug: 'limited-edition' },
+  ];
+}
+
 export default function CollectionPage({ params }) {
   // Use React.use() to unwrap params
   const unwrappedParams = use(params);
