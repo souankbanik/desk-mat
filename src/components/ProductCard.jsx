@@ -15,6 +15,7 @@ const ProductCard = ({ product, collectionName, addToCart }) => {
           borderRadius: '8px',
           overflow: 'hidden',
           backgroundColor: '#f8f9fa',
+          border: '1px solid rgba(0,0,0,0.05)',
           marginBottom: '12px'
         }}
       >

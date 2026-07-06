@@ -35,7 +35,7 @@ export const collections = {
       name: "Topographic Noir Desk Mat",
       price: 1999,
       originalPrice: 2499,
-      image: "https://images.unsplash.com/photo-1588693959306-613d2f9b8c94?w=800&q=80"
+      image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&q=80"
     },
     {
       id: "bs2",
