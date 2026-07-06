@@ -5,7 +5,7 @@ export const collections = {
       name: "Liquid Obsidian Desk Mat",
       price: 1999,
       originalPrice: 2499,
-      image: "https://images.unsplash.com/photo-1629739884942-8c704f7bdc71?w=800&q=80"
+      image: "https://images.unsplash.com/photo-1527443195645-1133f7f28990?w=800&q=80"
     },
     {
       id: "na2",
