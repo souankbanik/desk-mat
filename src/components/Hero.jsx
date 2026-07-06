@@ -38,25 +38,18 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <motion.div 
-          className="hero-image-block"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
+        <div className="hero-image-block">
           <div className="hero-image-bg"></div>
-          <motion.div
-            style={{ width: '100%', height: '100%', position: 'relative' }}
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <img 
-              src="/images/hero-picture.jpg" 
-              alt="Premium Desk Setup" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
-            />
-          </motion.div>
-        </motion.div>
+          <motion.img 
+            src="/images/hero-picture.jpg" 
+            alt="Premium Desk Setup" 
+            className="hero-img-element"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+          />
+        </div>
       </div>
     </section>
   );
