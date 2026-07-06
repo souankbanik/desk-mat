@@ -244,8 +244,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-image-container {
-  aspect-ratio: 16/9;
   width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
   border-radius: 8px;
   overflow: hidden;
   position: relative;
