@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 
 const ProductCarousel = ({ title, link, products, addToCart }) => {
   const scrollRef = useRef(null);
@@ -89,15 +89,14 @@ const ProductCarousel = ({ title, link, products, addToCart }) => {
                     />
                   </div>
                   <div className="product-info">
-                    <span className="product-collection">{title}</span>
-                    <h3 className="product-title">{product.name}</h3>
-                    <div className="product-rating">
-                      ★★★★★ <span>(42)</span>
+                    <div className="product-title-row">
+                      <h3 className="product-title">{product.name}</h3>
+                      <button className="btn-wishlist" aria-label="Add to wishlist">
+                        <Heart size={18} />
+                      </button>
                     </div>
-                    <span className="price-current">₹{product.price.toLocaleString('en-IN')}</span>
-                    <button className="btn-view-product">
-                      View Product →
-                    </button>
+                    <span className="product-collection">Desk Mats</span>
+                    <span className="price-current">₹ {product.price.toLocaleString('en-IN')}</span>
                   </div>
                 </div>
               </div>

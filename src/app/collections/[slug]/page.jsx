@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Heart } from 'lucide-react';
 import { collections } from '../../../data/products';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
@@ -82,15 +82,14 @@ export default async function CollectionPage({ params }) {
                     />
                   </div>
                   <div className="product-info">
-                    <span className="product-collection">{title}</span>
-                    <h3 className="product-title">{product.name}</h3>
-                    <div className="product-rating">
-                      ★★★★★ <span>(42)</span>
+                    <div className="product-title-row">
+                      <h3 className="product-title">{product.name}</h3>
+                      <button className="btn-wishlist" aria-label="Add to wishlist">
+                        <Heart size={18} />
+                      </button>
                     </div>
-                    <span className="price-current">₹{product.price.toLocaleString('en-IN')}</span>
-                    <button className="btn-view-product">
-                      View Product →
-                    </button>
+                    <span className="product-collection">Desk Mats</span>
+                    <span className="price-current">₹ {product.price.toLocaleString('en-IN')}</span>
                   </div>
                 </div>
               ))}
