@@ -2,8 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag } from 'lucide-react';
+import { useWishlist } from '../context/WishlistContext';
 
 const ProductCard = ({ product, collectionName, addToCart }) => {
+  const { toggleWishlist, isInWishlist } = useWishlist();
+  const isSaved = isInWishlist(product.id);
+
   return (
     <div className="product-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div 
@@ -41,8 +45,15 @@ const ProductCard = ({ product, collectionName, addToCart }) => {
           />
         </Link>
         <div className="product-actions">
-          <button className="action-btn btn-wishlist" aria-label="Add to wishlist">
-            <Heart size={16} />
+          <button 
+            className="action-btn btn-wishlist" 
+            aria-label="Add to wishlist"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleWishlist(product);
+            }}
+          >
+            <Heart size={16} fill={isSaved ? "currentColor" : "none"} color={isSaved ? "var(--color-primary)" : "currentColor"} />
           </button>
           <button className="action-btn btn-cart" aria-label="Add to cart" onClick={(e) => { e.preventDefault(); if (addToCart) addToCart(1); }}>
             <ShoppingBag size={16} />

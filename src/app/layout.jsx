@@ -17,6 +17,8 @@ export const metadata = {
   },
 };
 
+import { WishlistProvider } from '../context/WishlistContext';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -24,7 +26,9 @@ export default function RootLayout({ children }) {
         <div style={{ backgroundColor: '#000000', color: '#ffffff', textAlign: 'center', padding: '10px', fontSize: '12px', fontWeight: '700', letterSpacing: '0.5px', textTransform: 'uppercase', zIndex: 1000, position: 'relative' }}>
           🎉 10% OFF 2+ DESK MATS!
         </div>
-        {children}
+        <WishlistProvider>
+          {children}
+        </WishlistProvider>
       </body>
     </html>
   );

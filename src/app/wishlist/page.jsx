@@ -1,17 +1,24 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Heart } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
 import CartDrawer from '../../components/CartDrawer';
-import { collections } from '../../data/products';
+import { useWishlist } from '../../context/WishlistContext';
 
 export default function WishlistPage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const { wishlistItems } = useWishlist();
+  
+  // To avoid hydration mismatch on client/server render of localstorage
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const toggleCart = () => setIsCartOpen(!isCartOpen);
   
@@ -19,14 +26,6 @@ export default function WishlistPage() {
     setCartCount(prev => prev + quantity);
     setIsCartOpen(true);
   };
-
-  // For the mockup, we will just grab a few products from the collections
-  // In a real app, this would be fetched from localStorage or a database
-  const wishlistItems = [
-    collections.newArrivals[0],
-    collections.animeCollection[1],
-    collections.minimalCollection[0]
-  ].filter(Boolean); // Filter out any undefined just in case
 
   return (
     <div className="app-container">
