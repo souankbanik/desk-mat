@@ -6,10 +6,12 @@ import Image from 'next/image';
 
 import { Search, ShoppingCart } from 'lucide-react';
 import SearchOverlay from './SearchOverlay';
+import { useCart } from '../context/CartContext';
 
-const Navbar = ({ cartCount, toggleCart }) => {
+const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { cartCount, toggleCart } = useCart();
 
   return (
     <div className="navbar-wrapper">
@@ -25,11 +27,8 @@ const Navbar = ({ cartCount, toggleCart }) => {
             <span className="hamburger-line"></span>
             <span className="hamburger-line"></span>
           </button>
-          <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center' }}>
-            {/* Reduced width/height on the container so it doesn't invisible-block the buttons */}
-            <div className="nav-logo-img-wrapper" style={{ position: 'relative', width: '180px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '5px' }}>
-              <Image src="/logo.png" alt="DMND+" fill style={{ objectFit: 'contain', transform: 'scale(1.8)' }} priority />
-            </div>
+          <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-outfit)', fontSize: '28px', fontWeight: '800', letterSpacing: '-0.5px', color: 'var(--color-primary)', textDecoration: 'none' }}>
+            m<span style={{ display: 'inline-block', width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#a0a0a0', margin: '0 1px' }}></span>padz
           </Link>
         </div>
         

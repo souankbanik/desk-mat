@@ -7,28 +7,32 @@ const michroma = Michroma({ weight: '400', subsets: ['latin'], variable: '--font
 const spaceMono = Space_Mono({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-space-mono' });
 
 export const metadata = {
-  title: 'Premium Desk Mats | Elevate Your Workspace | DMND+',
+  title: 'mopadz | Premium Desk Mats',
   description: 'Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence. Free shipping across India.',
-  keywords: ['desk mats', 'premium desk pads', 'gaming mouse pad', 'workspace accessories', 'DMND+'],
+  keywords: ['desk mats', 'premium desk pads', 'gaming mouse pad', 'workspace accessories', 'mopadz'],
   openGraph: {
-    title: 'Premium Desk Mats | Elevate Your Workspace | DMND+',
+    title: 'mopadz | Premium Desk Mats',
     description: 'Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence.',
     type: 'website',
   },
 };
 
 import { WishlistProvider } from '../context/WishlistContext';
+import { CartProvider } from '../context/CartContext';
+import AnnouncementBar from '../components/AnnouncementBar';
+import BottomNav from '../components/BottomNav';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} ${outfit.variable} ${michroma.variable} ${spaceMono.variable}`}>
-        <div style={{ backgroundColor: '#000000', color: '#ffffff', textAlign: 'center', padding: '10px', fontSize: '12px', fontWeight: '700', letterSpacing: '0.5px', textTransform: 'uppercase', zIndex: 1000, position: 'relative' }}>
-          🎉 10% OFF 2+ DESK MATS!
-        </div>
-        <WishlistProvider>
-          {children}
-        </WishlistProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <AnnouncementBar />
+            {children}
+            <BottomNav />
+          </WishlistProvider>
+        </CartProvider>
       </body>
     </html>
   );

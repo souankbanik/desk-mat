@@ -8,28 +8,21 @@ import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
 import CartDrawer from '../../components/CartDrawer';
 import { useWishlist } from '../../context/WishlistContext';
+import { useCart } from '../../context/CartContext';
 
 export default function WishlistPage() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
   const { wishlistItems } = useWishlist();
+  const { isCartOpen, toggleCart, addToCart, cartCount } = useCart();
   
   // To avoid hydration mismatch on client/server render of localstorage
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
-  
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
-  
-  const addToCart = (quantity = 1) => {
-    setCartCount(prev => prev + quantity);
-    setIsCartOpen(true);
-  };
 
   return (
     <div className="app-container">
-      <Navbar cartCount={cartCount} toggleCart={toggleCart} />
+      <Navbar />
       
       <main className="collection-page" style={{ paddingTop: '40px', paddingBottom: '80px', minHeight: '80vh' }}>
         <div className="container">

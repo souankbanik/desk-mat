@@ -9,20 +9,12 @@ import ProductDetails from '../../../components/ProductDetails';
 import CartDrawer from '../../../components/CartDrawer';
 
 export default function ProductClient({ product }) {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
-  
-  const addToCart = (quantity = 1) => {
-    setCartCount(prev => prev + quantity);
-    setIsCartOpen(true);
-  };
+  const { isCartOpen, toggleCart, addToCart, cartCount } = useCart();
 
   if (!product) {
     return (
       <div className="app-container">
-        <Navbar cartCount={cartCount} toggleCart={toggleCart} />
+        <Navbar />
         <main className="container" style={{ padding: '100px 0', textAlign: 'center' }}>
           <h1>Product not found</h1>
           <Link href="/" style={{ color: 'var(--text-primary)', textDecoration: 'underline' }}>Return Home</Link>
@@ -35,7 +27,7 @@ export default function ProductClient({ product }) {
 
   return (
     <div className="app-container">
-      <Navbar cartCount={cartCount} toggleCart={toggleCart} />
+      <Navbar />
       <div className="pd-breadcrumb-container container" style={{ marginTop: '20px' }}>
          <Link href="/" className="back-link" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', textDecoration: 'none' }}>
            <ArrowLeft size={20} />

@@ -2,57 +2,47 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
-    <section className="hero-section">
-      <div className="hero-content container">
-        <div className="hero-text-block">
-          <motion.h1 
-            className="hero-title"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            ELEVATE YOUR<br />WORKSPACE
-          </motion.h1>
-          
-          <motion.p 
-            className="hero-subtitle"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            Premium, high-performance desk mats designed for gamers, creators, and professionals who demand visual excellence.
-          </motion.p>
+    <section style={{ position: 'relative', width: '100%', minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+      {/* Background Image */}
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+        <Image 
+          src="/images/hero-picture.jpg" 
+          alt="Premium Desk Setup" 
+          fill
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }} 
+        />
+        {/* Dark Overlay for text readability */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
+      </div>
 
-          <motion.div 
-            className="hero-actions"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Link href="/collections/all" className="btn-primary">
-              Shop Collection
-            </Link>
-          </motion.div>
-        </div>
-
-        <div className="hero-image-block">
-          <picture style={{ width: '100%', height: '100%', display: 'block' }}>
-            <source media="(max-width: 992px)" srcSet="/images/hero-picture-mobile.jpg" />
-            <motion.img 
-              src="/images/hero-picture.jpg" 
-              alt="Premium Desk Setup" 
-              className="hero-img-element"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
-            />
-          </picture>
-        </div>
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', color: '#ffffff', padding: '0 20px', maxWidth: '800px', width: '100%' }}>
+        <p style={{ fontSize: '14px', fontWeight: '600', marginBottom: '8px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Premium Desk Mats</p>
+        <h1 style={{ fontSize: 'clamp(48px, 10vw, 80px)', fontWeight: '800', lineHeight: 1.1, marginBottom: '24px', fontFamily: 'var(--font-inter)', letterSpacing: '-1px', textShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
+          Level Up Your<br />Setup!
+        </h1>
+        <p style={{ fontSize: 'clamp(15px, 4vw, 18px)', fontWeight: '500', lineHeight: 1.5, marginBottom: '40px', maxWidth: '500px', margin: '0 auto 40px auto', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+          4mm Thick, Premium Edge Stitching and Available in both Speed and Control Type
+        </p>
+        <Link href="/collections/all" style={{ 
+          display: 'inline-block', 
+          backgroundColor: '#000000', 
+          color: '#ffffff', 
+          padding: '16px 40px', 
+          borderRadius: '8px', 
+          fontSize: '16px', 
+          fontWeight: '700', 
+          textDecoration: 'none',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          transition: 'transform 0.2s ease, backgroundColor 0.2s ease'
+        }}>
+          Shop Now
+        </Link>
       </div>
     </section>
   );

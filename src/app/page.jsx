@@ -1,42 +1,49 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TrustBanner from '../components/TrustBanner';
-import BannerCarousel from '../components/BannerCarousel';
+import ProductShowcase from '../components/ProductShowcase';
 import ProductCarousel from '../components/ProductCarousel';
+import BannerCarousel from '../components/BannerCarousel';
 import Reviews from '../components/Reviews';
-import CartDrawer from '../components/CartDrawer';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
+import CartDrawer from '../components/CartDrawer';
 import { collections } from '../data/products';
+import { useCart } from '../context/CartContext';
 
 export default function Home() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
-  
-  const addToCart = (quantity = 1) => {
-    setCartCount(prev => prev + quantity);
-    setIsCartOpen(true);
-  };
+  const { isCartOpen, toggleCart, addToCart, cartCount } = useCart();
 
   return (
     <div className="app-container">
-      <Navbar cartCount={cartCount} toggleCart={toggleCart} />
+      <Navbar />
       
       <main>
         <Hero />
         <TrustBanner />
-        <BannerCarousel />
+        <ProductShowcase />
         
-        <ProductCarousel title="NEW ARRIVALS" link="/collections/new-arrivals" products={collections.newArrivals} addToCart={addToCart} />
-        <ProductCarousel title="BEST SELLERS" link="/collections/best-sellers" products={collections.bestSellers} addToCart={addToCart} />
-        <ProductCarousel title="ANIME COLLECTION" link="/collections/anime-collection" products={collections.animeCollection} addToCart={addToCart} />
-        <ProductCarousel title="MINIMAL COLLECTION" link="/collections/minimal-collection" products={collections.minimalCollection} addToCart={addToCart} />
-        <ProductCarousel title="LIMITED EDITION" link="/collections/limited-edition" products={collections.limitedEdition} addToCart={addToCart} />
+        <section style={{ padding: '60px 0', backgroundColor: '#ffffff' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+              <h2 style={{ fontSize: '32px', fontWeight: '800', marginBottom: '12px', color: '#111111', fontFamily: 'var(--font-inter)' }}>Featured Desk Mats</h2>
+              <p style={{ fontSize: '15px', color: '#555555', maxWidth: '600px', margin: '0 auto', lineHeight: 1.5 }}>
+                Top-rated designs for peak performance and aesthetics. Find your perfect desk upgrade.
+              </p>
+            </div>
+            
+            <div className="responsive-product-grid">
+              {[...collections.newArrivals, ...collections.bestSellers].slice(0, 6).map((product, index) => (
+                <div key={index}>
+                  <ProductCard product={product} collectionName="Desk Mats" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         
         <Reviews />
         <FAQ />

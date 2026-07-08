@@ -2,19 +2,14 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Flame, Eye, Truck, ShieldCheck, Package } from 'lucide-react';
 import ProductReviews from './ProductReviews';
 
-const dimensions = [
-  { id: '900x400', label: '900x400mm' },
-  { id: '1200x600', label: '1200x600mm' }
-];
-
 export default function ProductDetails({ product, addToCart }) {
-  const [selectedDim, setSelectedDim] = useState(dimensions[0].id);
-  const [activeAccordion, setActiveAccordion] = useState('specs'); // 'specs' or 'shipping' or null
+  const [selectedSize, setSelectedSize] = useState('80x30');
+  const [selectedSurface, setSelectedSurface] = useState('Control Type');
+  const [quantity, setQuantity] = useState(1);
 
-  // We duplicate the main image to simulate a gallery since our dummy data only has one
   const galleryImages = [
     product.image,
     product.image,
@@ -22,121 +17,151 @@ export default function ProductDetails({ product, addToCart }) {
     product.image
   ];
 
-  const toggleAccordion = (section) => {
-    setActiveAccordion(prev => prev === section ? null : section);
-  };
-
   return (
     <div className="product-details-page">
       <div className="pd-container">
-        <div className="pd-grid">
+        <div className="pd-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
           
-          {/* Left Column: Images (Sticky on desktop) */}
+          {/* Top image gallery */}
           <div className="pd-gallery-column">
-            <div className="pd-gallery-sticky">
-              <div className="pd-main-image-wrapper">
-                <Image 
-                  src={product.image} 
-                  alt={product.name}
-                  fill
-                  priority
-                  style={{ objectFit: 'cover' }}
-                  className="pd-main-image"
-                />
-              </div>
-              <div className="pd-thumbnail-row">
-                {galleryImages.map((img, idx) => (
-                  <div key={idx} className={`pd-thumbnail ${idx === 0 ? 'active' : ''}`}>
-                    <Image 
-                      src={img} 
-                      alt={`Thumbnail ${idx + 1}`}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                ))}
-              </div>
+            <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', borderRadius: '12px', overflow: 'hidden' }}>
+              <Image 
+                src={product.image} 
+                alt={product.name}
+                fill
+                priority
+                style={{ objectFit: 'cover' }}
+              />
             </div>
           </div>
 
-          {/* Right Column: Details */}
-          <div className="pd-info-column">
-            <div className="pd-header">
-              <h1 className="pd-title">{product.name}</h1>
-              
-              {/* Minimalist Rating Component */}
-              <div className="pd-rating">
-                <span className="pd-star">★</span>
-                <span className="pd-rating-val">{product.rating}</span>
-                <span className="pd-review-count">({product.reviewCount} reviews)</span>
+          {/* Details */}
+          <div className="pd-info-column" style={{ padding: '0 10px' }}>
+            <h1 style={{ fontSize: '24px', fontWeight: '800', fontFamily: 'var(--font-inter)', marginBottom: '8px' }}>
+              {product.name}
+            </h1>
+            
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', flexWrap: 'wrap' }}>
+              <div className="pd-rating" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <span style={{ color: '#4b0082', fontSize: '14px' }}>★★★★★</span>
+                <span style={{ fontSize: '13px', color: '#555' }}>19 reviews</span>
               </div>
-              
-              <div className="pd-price">₹ {product.price.toLocaleString('en-IN')}</div>
-            </div>
-
-            <div className="pd-dimensions-section">
-              <h3 className="pd-section-label">Dimensions</h3>
-              <div className="pd-dimensions-grid">
-                {dimensions.map(dim => (
-                  <button
-                    key={dim.id}
-                    className={`pd-dim-btn ${selectedDim === dim.id ? 'active' : ''}`}
-                    onClick={() => setSelectedDim(dim.id)}
-                  >
-                    {dim.label}
-                  </button>
-                ))}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: '#d9381e', fontWeight: '500' }}>
+                <Flame size={14} /> 8 sold in last 24 hours
               </div>
-            </div>
-
-            <button className="pd-add-to-cart" onClick={() => addToCart(1)}>
-              Add to Cart
-            </button>
-
-            {/* Accordion Section */}
-            <div className="pd-accordion-container">
-              
-              {/* Specifications */}
-              <div className="pd-accordion-item">
-                <button 
-                  className="pd-accordion-trigger" 
-                  onClick={() => toggleAccordion('specs')}
-                >
-                  <span className="pd-accordion-title">Specifications</span>
-                  {activeAccordion === 'specs' ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                </button>
-                <div className={`pd-accordion-content ${activeAccordion === 'specs' ? 'open' : ''}`}>
-                  <ul className="pd-specs-list">
-                    <li><strong>Thickness:</strong> 4mm for optimal comfort and sound dampening.</li>
-                    <li><strong>Surface:</strong> Micro-woven texture for flawless precision tracking.</li>
-                    <li><strong>Edges:</strong> Premium stitched edges to prevent fraying.</li>
-                    <li><strong>Base:</strong> Anti-slip rubber base keeps the mat firmly in place.</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Shipping & Returns */}
-              <div className="pd-accordion-item">
-                <button 
-                  className="pd-accordion-trigger"
-                  onClick={() => toggleAccordion('shipping')}
-                >
-                  <span>Shipping & Returns</span>
-                  {activeAccordion === 'shipping' ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                </button>
-                <div className={`pd-accordion-content ${activeAccordion === 'shipping' ? 'open' : ''}`}>
-                  <p>Free standard shipping on all orders. Expedited shipping available at checkout.</p>
-                  <p>Returns accepted within 30 days of delivery. Custom desk mats are final sale.</p>
-                </div>
-              </div>
-              
             </div>
             
+            <div style={{ fontSize: '22px', fontWeight: '700', marginBottom: '16px' }}>
+              Rs. {product.price.toLocaleString('en-IN')}.00
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#555', marginBottom: '24px', backgroundColor: '#f5f5f5', padding: '8px 12px', borderRadius: '4px' }}>
+              <Eye size={16} /> 39 people are viewing this right now
+            </div>
+
+            {/* Variants */}
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ fontSize: '13px', marginBottom: '8px' }}>Mousepad Size: <strong>80x30 (Cm) - 4mm Thick</strong></div>
+              <button style={{ backgroundColor: '#111', color: '#fff', padding: '8px 16px', border: 'none', borderRadius: '4px', fontWeight: '600', fontSize: '13px' }}>
+                80x30 (cm) - 4mm Thick
+              </button>
+            </div>
+
+            <div style={{ marginBottom: '24px' }}>
+              <div style={{ fontSize: '13px', marginBottom: '8px' }}>Surface Type: <strong>{selectedSurface}</strong></div>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button 
+                  onClick={() => setSelectedSurface('Control Type')}
+                  style={{ backgroundColor: selectedSurface === 'Control Type' ? '#111' : '#fff', color: selectedSurface === 'Control Type' ? '#fff' : '#111', border: '1px solid #111', padding: '8px 16px', borderRadius: '4px', fontWeight: '600', fontSize: '13px', cursor: 'pointer' }}
+                >
+                  Control Type
+                </button>
+                <button 
+                  onClick={() => setSelectedSurface('Speed Type')}
+                  style={{ backgroundColor: selectedSurface === 'Speed Type' ? '#111' : '#fff', color: selectedSurface === 'Speed Type' ? '#fff' : '#111', border: '1px solid #ddd', padding: '8px 16px', borderRadius: '4px', fontWeight: '600', fontSize: '13px', cursor: 'pointer' }}
+                >
+                  Speed Type
+                </button>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '4px', padding: '4px 12px' }}>
+                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} style={{ border: 'none', background: 'none', fontSize: '18px', cursor: 'pointer' }}>-</button>
+                <span style={{ margin: '0 16px', fontWeight: '600' }}>{quantity}</span>
+                <button onClick={() => setQuantity(quantity + 1)} style={{ border: 'none', background: 'none', fontSize: '18px', cursor: 'pointer' }}>+</button>
+              </div>
+              <button onClick={() => addToCart(quantity)} style={{ flex: 1, backgroundColor: '#111', color: '#fff', border: 'none', borderRadius: '4px', fontWeight: '700', fontSize: '15px', cursor: 'pointer' }}>
+                Add to Cart
+              </button>
+            </div>
+            
+            <button style={{ width: '100%', backgroundColor: '#000', color: '#fff', border: 'none', borderRadius: '4px', padding: '14px', fontWeight: '800', fontSize: '16px', marginBottom: '24px', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
+              BUY NOW <span style={{ fontSize: '18px' }}>›</span>
+            </button>
+
+            {/* Trust Badges */}
+            <div style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '16px', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid #eee' }}>
+                <div style={{ backgroundColor: '#f3e8ff', color: '#7e22ce', padding: '8px', borderRadius: '50%' }}>
+                  <ShieldCheck size={20} />
+                </div>
+                <div>
+                  <div style={{ fontWeight: '700', fontSize: '14px' }}>Razorpay Money Back Promise</div>
+                  <div style={{ fontSize: '12px', color: '#666' }}>Get 100% refund on non-delivery or defects</div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'center' }}>
+                <div>
+                  <Truck size={20} style={{ margin: '0 auto 8px auto', color: '#555' }} />
+                  <div style={{ fontSize: '13px' }}>Free shipping on all orders <strong>across India.</strong></div>
+                </div>
+                <div style={{ borderTop: '1px solid #eee', paddingTop: '16px' }}>
+                  <Package size={20} style={{ margin: '0 auto 8px auto', color: '#555' }} />
+                  <div style={{ fontSize: '13px' }}>Order dispatched within <strong>1-3 days.</strong></div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Features Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px 16px', marginBottom: '32px' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '28px', marginBottom: '8px' }}>📏</div>
+                <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>4 mm Thickness</div>
+                <div style={{ fontSize: '12px', color: '#666', lineHeight: 1.4 }}>Enjoy the perfect blend of comfort and stability.</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '28px', marginBottom: '8px' }}>🧵</div>
+                <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>Anti-Fray Stitched Edges</div>
+                <div style={{ fontSize: '12px', color: '#666', lineHeight: 1.4 }}>Our precisely stitched edges ensure durability.</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '28px', marginBottom: '8px' }}>🛑</div>
+                <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>Anti-Slip Rubber Base</div>
+                <div style={{ fontSize: '12px', color: '#666', lineHeight: 1.4 }}>No more sliding—keeps your desk mat firmly in place.</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '28px', marginBottom: '8px' }}>✨</div>
+                <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>Vibrant Print Quality</div>
+                <div style={{ fontSize: '12px', color: '#666', lineHeight: 1.4 }}>Bring your desk to life with ultra-sharp, vibrant prints.</div>
+              </div>
+            </div>
+
+            {/* Tabs */}
+            <div style={{ borderTop: '1px solid #eee', paddingTop: '24px' }}>
+              <div style={{ display: 'flex', gap: '24px', borderBottom: '1px solid #eee', marginBottom: '20px', justifyContent: 'center' }}>
+                <button style={{ paddingBottom: '12px', background: 'none', border: 'none', borderBottom: '2px solid #111', fontWeight: '700', color: '#111', fontSize: '15px', cursor: 'pointer' }}>Customer Reviews</button>
+                <button style={{ paddingBottom: '12px', background: 'none', border: 'none', color: '#888', fontSize: '15px', fontWeight: '500', cursor: 'pointer' }}>Description</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
       
-      {/* Product Reviews Section */}
+      {/* Product Reviews Section placeholder since mopadz has Tabs, but we will leave this as is for now */}
       <ProductReviews />
     </div>
   );

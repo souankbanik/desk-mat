@@ -1,22 +1,15 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import ProductCard from '../../../components/ProductCard';
 import CartDrawer from '../../../components/CartDrawer';
 import { collections } from '../../../data/products';
+import { useCart } from '../../../context/CartContext';
 
 export default function AllCollectionsPage() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
-  
-  const addToCart = (quantity = 1) => {
-    setCartCount(prev => prev + quantity);
-    setIsCartOpen(true);
-  };
+  const { isCartOpen, toggleCart, addToCart, cartCount } = useCart();
 
   // Aggregate all unique products
   const allProducts = [];
