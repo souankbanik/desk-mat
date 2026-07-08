@@ -41,14 +41,14 @@ const Navbar = ({ cartCount, toggleCart }) => {
           <Link href="/wishlist" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Wishlist</Link>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginRight: '-20px', position: 'relative', zIndex: 110 }}>
-          <button aria-label="Search" onClick={() => setIsSearchOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px' }}>
-            <Search size={16} />
+        <div className="navbar-actions">
+          <button aria-label="Search" onClick={() => setIsSearchOpen(true)} className="nav-action-btn">
+            <Search className="navbar-icon" />
           </button>
-          <button aria-label="Shopping Cart" className="nav-cart" onClick={toggleCart} style={{ padding: '4px', display: 'flex', alignItems: 'center', position: 'relative', border: 'none', background: 'none' }}>
-            <ShoppingCart size={16} />
+          <button aria-label="Shopping Cart" className="nav-cart nav-action-btn" onClick={toggleCart}>
+            <ShoppingCart className="navbar-icon" />
             {cartCount > 0 && (
-              <span style={{ position: 'absolute', top: '-2px', right: '-4px', background: 'var(--color-primary)', color: 'white', fontSize: '0.65rem', fontWeight: 'bold', width: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
+              <span className="cart-badge">
                 {cartCount}
               </span>
             )}

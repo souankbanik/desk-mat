@@ -1135,3 +1135,66 @@ h1, h2, h3, h4, h5, h6 {
     gap: 24px;
   }
 }
+
+/* Navbar Actions */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: -20px;
+  position: relative;
+  z-index: 110;
+}
+
+.nav-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.nav-cart {
+  position: relative;
+}
+
+.navbar-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+  .navbar-actions {
+    gap: 24px;
+  }
+  .navbar-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .cart-badge {
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+    top: -4px;
+    right: -8px;
+  }
+}
