@@ -12,7 +12,7 @@ const Reviews = () => {
   return (
     <section className="container" style={{ padding: '80px 24px' }}>
       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-        <h2 className="grid-title">Loved by Creators</h2>
+        <h2 className="grid-title">Loved by Customers</h2>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', color: '#ffb400', fontSize: '1.25rem' }}>
           ★ ★ ★ ★ ★
         </div>

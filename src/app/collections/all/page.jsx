@@ -1,16 +1,10 @@
 "use client";
 
 import React from 'react';
-import Navbar from '../../../components/Navbar';
-import Footer from '../../../components/Footer';
-import ProductCard from '../../../components/ProductCard';
-import CartDrawer from '../../../components/CartDrawer';
+import CollectionClient from '../[slug]/CollectionClient';
 import { collections } from '../../../data/products';
-import { useCart } from '../../../context/CartContext';
 
 export default function AllCollectionsPage() {
-  const { isCartOpen, toggleCart, addToCart, cartCount } = useCart();
-
   // Aggregate all unique products
   const allProducts = [];
   const addedIds = new Set();
@@ -25,35 +19,6 @@ export default function AllCollectionsPage() {
   }
 
   return (
-    <div className="app-container">
-      <Navbar cartCount={cartCount} toggleCart={toggleCart} />
-      
-      <main className="container" style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '80vh' }}>
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h1 style={{ fontSize: '48px', fontWeight: '700', marginBottom: '16px', fontFamily: 'var(--font-outfit)', textTransform: 'uppercase' }}>ALL PRODUCTS</h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '18px', maxWidth: '600px', margin: '0 auto' }}>
-            Discover our complete collection of premium, high-performance desk mats designed for gamers, creators, and professionals.
-          </p>
-        </div>
-        
-        <div className="responsive-product-grid">
-          {allProducts.map(product => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
-              addToCart={addToCart} 
-            />
-          ))}
-        </div>
-      </main>
-      
-      <Footer />
-      
-      <CartDrawer 
-        isOpen={isCartOpen} 
-        toggleCart={toggleCart} 
-        cartCount={cartCount}
-      />
-    </div>
+    <CollectionClient title="All Products" products={allProducts} />
   );
 }

@@ -15,9 +15,17 @@ export default function Contact() {
       
       <main style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '100px 24px' }}>
         <h1 className="grid-title">Contact Us</h1>
-        <p className="text-secondary" style={{ marginBottom: '40px', textAlign: 'center', maxWidth: '600px' }}>
+        <p className="text-secondary" style={{ marginBottom: '24px', textAlign: 'center', maxWidth: '600px' }}>
           Have a question about our desk mats or need help with an order? Drop us a message below and our support team will get back to you within 24 hours.
         </p>
+
+        {/* Support Information required for Payment Gateway Compliance */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', marginBottom: '40px', padding: '24px', backgroundColor: '#f9f9f9', borderRadius: '12px', width: '100%', maxWidth: '500px', border: '1px solid #eee' }}>
+          <div style={{ fontWeight: '600', color: '#111' }}>Direct Support Details</div>
+          <div style={{ color: '#444' }}>Email: support@example-domain.com</div>
+          <div style={{ color: '#444' }}>Phone: +91 0000000000</div>
+          <div style={{ fontSize: '12px', color: '#888', marginTop: '8px' }}>(These placeholders will be updated when domain is purchased)</div>
+        </div>
         
         <form style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', maxWidth: '500px' }} onSubmit={(e) => e.preventDefault()}>
           <div style={{ display: 'flex', gap: '16px' }}>

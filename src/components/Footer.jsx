@@ -31,8 +31,8 @@ const Footer = () => {
             <h4 style={{ fontSize: '16px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Support</h4>
             <Link href="/contact" style={{ color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}>Contact Us</Link>
             <Link href="/track-order" style={{ color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}>Track Order</Link>
-            <a href="#" style={{ color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}>Shipping Policy</a>
-            <a href="#" style={{ color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}>Returns & Exchanges</a>
+            <Link href="/policies/shipping" style={{ color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}>Shipping Policy</Link>
+            <Link href="/policies/refund" style={{ color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}>Returns & Refunds</Link>
           </div>
 
         </div>
@@ -40,8 +40,8 @@ const Footer = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', borderTop: '1px solid var(--border-highlight)', paddingTop: '32px' }}>
           <p style={{ color: 'var(--text-light)', fontSize: '14px' }}>&copy; {new Date().getFullYear()} DMND+. All rights reserved.</p>
           <div style={{ display: 'flex', gap: '24px' }}>
-            <a href="#" style={{ color: 'var(--text-light)', textDecoration: 'none', fontSize: '14px' }}>Privacy Policy</a>
-            <a href="#" style={{ color: 'var(--text-light)', textDecoration: 'none', fontSize: '14px' }}>Terms of Service</a>
+            <Link href="/policies/privacy" style={{ color: 'var(--text-light)', textDecoration: 'none', fontSize: '14px' }}>Privacy Policy</Link>
+            <Link href="/policies/terms" style={{ color: 'var(--text-light)', textDecoration: 'none', fontSize: '14px' }}>Terms of Service</Link>
           </div>
         </div>
       </div>

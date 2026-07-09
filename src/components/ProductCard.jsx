@@ -23,6 +23,14 @@ const ProductCard = ({ product, collectionName, addToCart }) => {
           marginBottom: '12px'
         }}
       >
+        {/* SALE Badge */}
+        <div style={{
+          position: 'absolute', top: '12px', left: '12px', zIndex: 5,
+          backgroundColor: '#10b981', color: '#fff', fontSize: '10px',
+          fontWeight: '700', padding: '4px 8px', borderRadius: '4px', letterSpacing: '0.5px'
+        }}>
+          SAVE 28%
+        </div>
         <Link 
           href={`/products/${product.id}`} 
           className="product-image-link"
@@ -69,7 +77,10 @@ const ProductCard = ({ product, collectionName, addToCart }) => {
              <span key={i} className="star">★</span>
           ))}
         </div>
-        <span className="price-current">Rs. {product.price.toLocaleString('en-IN')}.00</span>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
+          <span className="price-current">Rs. {product.price.toLocaleString('en-IN')}.00</span>
+          <span style={{ fontSize: '11px', color: '#888', textDecoration: 'line-through' }}>Rs. {(product.price * 1.4).toLocaleString('en-IN')}.00</span>
+        </div>
       </div>
     </div>
   );

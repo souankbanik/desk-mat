@@ -26,6 +26,15 @@ export function generateStaticParams() {
     { slug: 'anime-collection' },
     { slug: 'minimal-collection' },
     { slug: 'limited-edition' },
+    // New Categories
+    { slug: 'personalized' },
+    { slug: 'shapes-pattern' },
+    { slug: 'great-art' },
+    { slug: 'gaming' },
+    { slug: 'tech' },
+    { slug: 'japanese' },
+    { slug: 'space' },
+    { slug: 'anime' }
   ];
 }
 

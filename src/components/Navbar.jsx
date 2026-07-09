@@ -3,15 +3,27 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-import { Search, ShoppingCart } from 'lucide-react';
+import { Search, ShoppingCart, User } from 'lucide-react';
 import SearchOverlay from './SearchOverlay';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cartCount, toggleCart } = useCart();
+  const { user, isAuthenticated, openAuthModal } = useAuth();
+  const router = useRouter();
+
+  const handleUserClick = () => {
+    if (isAuthenticated) {
+      router.push('/account');
+    } else {
+      openAuthModal();
+    }
+  };
 
   return (
     <div className="navbar-wrapper">
@@ -27,8 +39,8 @@ const Navbar = () => {
             <span className="hamburger-line"></span>
             <span className="hamburger-line"></span>
           </button>
-          <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-outfit)', fontSize: '28px', fontWeight: '800', letterSpacing: '-0.5px', color: 'var(--color-primary)', textDecoration: 'none' }}>
-            m<span style={{ display: 'inline-block', width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#a0a0a0', margin: '0 1px' }}></span>padz
+          <Link href="/" className="nav-logo nav-logo-wrapper">
+            <Image src="/logo.png" alt="DMND+" fill style={{ objectFit: 'contain', objectPosition: 'left center' }} priority />
           </Link>
         </div>
         
@@ -43,6 +55,15 @@ const Navbar = () => {
         <div className="navbar-actions">
           <button aria-label="Search" onClick={() => setIsSearchOpen(true)} className="nav-action-btn">
             <Search className="navbar-icon" />
+          </button>
+          <button aria-label="User Account" onClick={handleUserClick} className="nav-action-btn">
+            {isAuthenticated ? (
+              <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#fff', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold' }}>
+                {user?.name?.charAt(0).toUpperCase()}
+              </div>
+            ) : (
+              <User className="navbar-icon" />
+            )}
           </button>
           <button aria-label="Shopping Cart" className="nav-cart nav-action-btn" onClick={toggleCart}>
             <ShoppingCart className="navbar-icon" />

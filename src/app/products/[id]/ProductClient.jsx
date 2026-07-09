@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import ProductDetails from '../../../components/ProductDetails';
 import CartDrawer from '../../../components/CartDrawer';
+import { useCart } from '../../../context/CartContext';
 
 export default function ProductClient({ product }) {
   const { isCartOpen, toggleCart, addToCart, cartCount } = useCart();

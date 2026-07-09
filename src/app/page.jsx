@@ -1,14 +1,17 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TrustBanner from '../components/TrustBanner';
 import ProductShowcase from '../components/ProductShowcase';
+import ProductCard from '../components/ProductCard';
 import ProductCarousel from '../components/ProductCarousel';
 import BannerCarousel from '../components/BannerCarousel';
 import Reviews from '../components/Reviews';
 import FAQ from '../components/FAQ';
+import FeaturesHighlights from '../components/FeaturesHighlights';
 import Footer from '../components/Footer';
 import CartDrawer from '../components/CartDrawer';
 import { collections } from '../data/products';
@@ -42,10 +45,16 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <div style={{ textAlign: 'center', marginTop: '48px' }}>
+              <Link href="/collections/all" className="btn-primary" style={{ display: 'inline-block', padding: '16px 40px', fontSize: '15px', fontWeight: '700', borderRadius: '8px', textDecoration: 'none' }}>
+                View All Products
+              </Link>
+            </div>
           </div>
         </section>
         
         <Reviews />
+        <FeaturesHighlights />
         <FAQ />
       </main>
 

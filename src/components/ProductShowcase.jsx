@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const CATEGORIES = [
@@ -14,7 +14,38 @@ const CATEGORIES = [
   { name: 'Anime Desk Mats', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&q=80', slug: 'anime' }
 ];
 
+// We render 3 copies of the categories to create a seamless infinite loop illusion
+const LOOPED_CATEGORIES = [...CATEGORIES, ...CATEGORIES, ...CATEGORIES];
+
 const ProductShowcase = () => {
+  const scrollRef = useRef(null);
+  
+  // Each item is 120px wide + 24px gap = 144px. 
+  // 8 items = 1152px width for a single full set of categories.
+  const SINGLE_SET_WIDTH = CATEGORIES.length * (120 + 24);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      // Start user perfectly in the middle set so they can scroll left or right immediately
+      scrollRef.current.scrollLeft = SINGLE_SET_WIDTH;
+    }
+  }, [SINGLE_SET_WIDTH]);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      
+      // If user scrolls too far left into the first set, jump them back to the middle set
+      if (scrollLeft <= 0) {
+        scrollRef.current.scrollLeft += SINGLE_SET_WIDTH;
+      } 
+      // If user scrolls too far right into the third set, jump them back to the middle set
+      else if (scrollLeft >= scrollWidth - clientWidth) {
+        scrollRef.current.scrollLeft -= SINGLE_SET_WIDTH;
+      }
+    }
+  };
+
   return (
     <section style={{ padding: '60px 20px', textAlign: 'center', backgroundColor: '#ffffff', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -23,22 +54,26 @@ const ProductShowcase = () => {
           Explore our unique desk mat collections—crafted for style, performance, and personal expression.
         </p>
 
-        <div className="hide-scrollbar" style={{ 
-          display: 'flex', 
-          overflowX: 'auto', 
-          scrollSnapType: 'x mandatory',
-          gap: '24px', 
-          padding: '10px 20px 20px 20px',
-          margin: '0 -20px', // allow bleeding out of mobile screen
-        }}>
-          {CATEGORIES.map((cat, i) => (
+        <div 
+          className="hide-scrollbar" 
+          ref={scrollRef}
+          onScroll={handleScroll}
+          style={{ 
+            display: 'flex', 
+            overflowX: 'auto', 
+            scrollBehavior: 'auto', // Important: auto instead of smooth for seamless jumps
+            gap: '24px', 
+            padding: '10px 20px 20px 20px',
+            margin: '0 -20px', // allow bleeding out of mobile screen
+          }}
+        >
+          {LOOPED_CATEGORIES.map((cat, i) => (
             <Link key={i} href={`/collections/${cat.slug}`} style={{ 
               display: 'flex', 
               flexDirection: 'column', 
               alignItems: 'center', 
               minWidth: '120px',
               maxWidth: '120px',
-              scrollSnapAlign: 'center',
               textDecoration: 'none'
             }}>
               <div style={{ 
@@ -59,12 +94,6 @@ const ProductShowcase = () => {
           ))}
         </div>
         
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '16px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#111111' }}></span>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#dddddd' }}></span>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#dddddd' }}></span>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#dddddd' }}></span>
-        </div>
       </div>
     </section>
   );
